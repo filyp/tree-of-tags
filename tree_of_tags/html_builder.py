@@ -65,8 +65,14 @@ class HTMLBuilder:
             "__POST_URL__", f"https://forum.effectivealtruism.org/posts/{post['_id']}"
         )
         post_html = post_html.replace("__POST_TITLE__", post["title"])
-        post_html = post_html.replace("__USER_URL__", post["user"]["pageUrl"])
-        post_html = post_html.replace("__USER_NAME__", post["user"]["displayName"])
+        if post["user"] is not None:
+            user_url = post["user"]["pageUrl"]
+            user_name = post["user"]["displayName"]
+        else:
+            user_url = ""
+            user_name = ""
+        post_html = post_html.replace("__USER_URL__", user_url)
+        post_html = post_html.replace("__USER_NAME__", user_name)
         post_html = post_html.replace("__SCORE__", str(post["baseScore"]))
         comment_count = str(post["commentCount"]) if post["commentCount"] is not None else "0"
         post_html = post_html.replace("__COMMENT_COUNT__", comment_count)
@@ -77,11 +83,17 @@ class HTMLBuilder:
         # build content
         tags_left_html = ""
         for tag, side_score in tags_left:
+            if side_score > 0:
+                # skip tags which belong to the right side
+                continue
             tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
             tags_left_html += self.build_tag_html(tag_url, tag["name"])
 
         tags_right_html = ""
         for tag, side_score in tags_right:
+            if side_score <= 0:
+                # skip tags which belong to the left side
+                continue
             tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
             tags_right_html += self.build_tag_html(tag_url, tag["name"])
 
@@ -99,6 +111,10 @@ class HTMLBuilder:
         page_html = page_html.replace("__TAGS2__", tags_right_html)
         page_html = page_html.replace("__POSTS1__", posts_left_html)
         page_html = page_html.replace("__POSTS2__", posts_right_html)
+
+        # set links to branches
+        page_html = page_html.replace("__BUTTON1_URL__", filename.split(".")[0] + "0.html")
+        page_html = page_html.replace("__BUTTON2_URL__", filename.split(".")[0] + "1.html")
 
         # save html file
         pages_folder = Path(__file__).parent.parent / "pages"

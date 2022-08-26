@@ -87,15 +87,15 @@ class Engine:
         tag_usefulness_sorted = self.get_most_separating_tags(self.post_sides, candidate_tags)
         self.tags_spectrum = tag_usefulness_sorted
 
-    def get_best_left_tags(self, n=10):
+    def get_best_left_tags(self, n=12):
         for tag_id, side_score in self.tags_spectrum[:n]:
             yield self.data.tags[tag_id], side_score
 
-    def get_best_right_tags(self, n=10):
+    def get_best_right_tags(self, n=12):
         for tag_id, side_score in reversed(self.tags_spectrum[-n:]):
             yield self.data.tags[tag_id], side_score
 
-    def get_best_left_posts(self, n=15):
+    def get_best_left_posts(self, n=18):
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = []
         for i in left_post_indexes:
@@ -104,7 +104,7 @@ class Engine:
         sorted_left_posts = sorted(left_posts, key=lambda post: post["score"], reverse=True)
         return sorted_left_posts[:n]
 
-    def get_best_right_posts(self, n=15):
+    def get_best_right_posts(self, n=18):
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = []
         for i in right_post_idexes:
