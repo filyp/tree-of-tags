@@ -16,7 +16,7 @@ def timestamp_to_time_ago_str(post):
     timestamp = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ")
     # get current UTC time
     now = datetime.datetime.utcnow()
-    seconds_passed = (now - timestamp).seconds
+    seconds_passed = int((now - timestamp).total_seconds())
 
     years_passed = seconds_passed // seconds_in_year
     if years_passed > 0:
