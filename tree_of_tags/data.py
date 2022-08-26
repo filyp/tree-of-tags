@@ -1,5 +1,5 @@
-from tree_of_tags.forum_queries import get_all_posts, get_all_tags
-from tree_of_tags.persistence import save_forum_data, load_forum_data
+from forum_queries import get_all_posts, get_all_tags
+from persistence import save_forum_data, load_forum_data
 
 import numpy as np
 import networkx as nx

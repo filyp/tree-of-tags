@@ -14,12 +14,17 @@ posts_query = """
       _id
       title
       postedAt
-      userId
+      user {
+        username
+        displayName
+        pageUrl
+      }
 			tagRelevance
       wordCount
       voteCount
       baseScore
       score
+      commentCount
     }
   }  
 }
@@ -32,6 +37,7 @@ tags_query = """
     results {
       createdAt
       name
+      slug
       core
       suggestedAsFilter
       postCount

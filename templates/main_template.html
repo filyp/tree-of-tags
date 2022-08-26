@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tree of Tags</title>
+  <link data-react-helmet="true" rel="shortcut icon"
+    href="https://images.ctfassets.net/ohf186sfn6di/7J4cBC9SXCWMoqqCIqI0GI/affe205261bb8cff47501a0ada0f2268/ea-logo-square-1200x1200__1_.png?h=50">
+  <link data-react-helmet="true" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700&amp;subset=all">
+  <link data-react-helmet="true" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,500,600,700">
+
+
+  <style>
+    .item1 {
+      grid-area: button1;
+    }
+
+    .item1 {
+      grid-area: button2;
+    }
+
+    .item2 {
+      grid-area: tags1;
+    }
+
+    .item2 {
+      grid-area: tags2;
+    }
+
+    .item3 {
+      grid-area: posts1;
+    }
+
+    .item3 {
+      grid-area: posts2;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        'button1 button2'
+        'tags1 tags2'
+        'posts1 posts2';
+      column-gap: 30px;
+      row-gap: 0px;
+      grid-template-columns: 45% 45%;
+      justify-content: center;
+      padding-top: 40px;
+      padding-bottom: 80px;
+    }
+
+    .button {
+      display: block;
+      border: none;
+      background-color: #eeeeee;
+      /* background-color: #0c869b; */
+
+      padding: 20px;
+      cursor: pointer;
+      text-align: center;
+      font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+      font-size: 1.3rem;
+      color: rgba(0, 0, 0, 0.87);
+
+      /* margin-left: 4%;
+      margin-right: 4%; */
+      margin-bottom: 30px;
+    }
+  </style>
+
+
+  <style data-jss="" data-meta="MuiSvgIcon">
+    .MuiSvgIcon-root {
+      fill: currentColor;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      font-size: 24px;
+      transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .MuiSvgIcon-colorPrimary {
+      color: #0c869b;
+    }
+
+    .MuiSvgIcon-colorSecondary {
+      color: #0c869b;
+    }
+
+    .MuiSvgIcon-colorAction {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .MuiSvgIcon-colorError {
+      color: #bf360c;
+    }
+
+    .MuiSvgIcon-colorDisabled {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    .MuiSvgIcon-fontSizeInherit {
+      font-size: inherit;
+    }
+
+    .MuiSvgIcon-fontSizeSmall {
+      font-size: 20px;
+    }
+
+    .MuiSvgIcon-fontSizeLarge {
+      font-size: 36px;
+    }
+  </style>
+
+
+  <link rel="stylesheet" onerror="window.missingMainStylesheet=true"
+    href="https://forum.effectivealtruism.org/allStyles?hash=a4ddc06ba8e4be422be4a07939db5c1f49854b6c59983f9eb633df97f9c74397&amp;theme=%7B%22name%22%3A%22default%22%7D">
+</head>
+
+
+<body
+  class="abTestNoEffect_group2 collectionsPageABTest_largeSequenceItemGroup booksProgressBarABTest_progressBar welcomeBoxABTest_control twoLineEventsSidebar_expanded">
+  <div class="grid-container">
+
+    <div class="button1">
+      <a href="https://google.com" class="button">Choose this branch</a>
+    </div>
+
+    <div class="button2">
+      <a href="https://google.com" class="button">Choose this branch</a>
+    </div>
+
+    <div class="tags1">
+      <div class="HomeLatestPosts-titleWrapper">
+        <span class="HomeLatestPosts-hideOnMobile">
+          <span>
+            __TAGS1__
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="tags2">
+      <div class="HomeLatestPosts-titleWrapper">
+        <span class="HomeLatestPosts-hideOnMobile">
+          <span>
+            __TAGS2__
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="posts1">
+      <div class="">
+        <div class="PostsList2-posts">
+          __POSTS1__
+        </div>
+      </div>
+    </div>
+
+    <div class="posts2">
+      <div class="">
+        <div class="PostsList2-posts">
+          __POSTS2__
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
