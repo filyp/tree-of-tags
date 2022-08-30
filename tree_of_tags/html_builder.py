@@ -117,7 +117,7 @@ class HTMLBuilder:
         page_html = page_html.replace("__BUTTON2_URL__", filename.split(".")[0] + "1.html")
 
         # save html file
-        pages_folder = Path(__file__).parent.parent / "pages"
+        pages_folder = Path(__file__).parent.parent / "_site"
         page_name = pages_folder / filename
         with open(page_name, "w") as f:
             f.write(page_html)
