@@ -3,6 +3,7 @@ from engine import Engine, TreeClimber
 from html_builder import HTMLBuilder
 
 import time
+import sys
 
 
 start_time = time.time()
@@ -44,8 +45,8 @@ def generate_branches(id_, depth=3):
         generate_branches(id_ + "1", depth - 1)
         engine.go_back()
 
-
 start_time = time.time()
-generate_branches("a", depth=50)
+depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
+generate_branches("a", depth=depth)
 page_building_time = time.time() - start_time
 print(f"Page building time: {page_building_time:.3f}s")
