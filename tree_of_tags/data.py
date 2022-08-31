@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class Data:
-    def __init__(self, use_cached_forum_data=True, use_cached_tree=True, alpha=1.9):
+    def __init__(self, use_cached_forum_data=True, use_cached_tree=True, alpha=1.5):
         self.alpha = alpha
         # load data
         if use_cached_forum_data:
@@ -48,8 +48,10 @@ class Data:
                         Tag_cooccurence.add_edge(tag1, tag2, weight=0)
 
                     cooccurence_strength = tags_in_post[tag1] * tags_in_post[tag2]
+                    if tag1 != tag2:
+                        # we divide by two because each pair is counted twice
+                        cooccurence_strength /= 2
                     Tag_cooccurence[tag1][tag2]["weight"] += cooccurence_strength
-                    # tag_cooccurence[tag1][tag2]["weight"] += 1
 
         # remove tags which were not fetched for some reason, but are present in posts
         num_of_removed = 0
@@ -72,8 +74,8 @@ class Data:
         self.Tag_cooccurence = Tag_cooccurence_trimmed
 
     def build_tree(self):
-        dendrogram = krakow(self.Tag_cooccurence, alpha=self.alpha, beta=1)
-        tree = to_tree(dendrogram)
+        self._dendrogram = krakow(self.Tag_cooccurence, alpha=self.alpha, beta=1)
+        tree = to_tree(self._dendrogram)
 
         # convert leaf values to original ids
         ids_list = np.array(self.Tag_cooccurence.nodes)

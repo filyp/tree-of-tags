@@ -6,15 +6,15 @@ import time
 
 
 start_time = time.time()
-data = Data(alpha=1.9, use_cached_forum_data=True)
+data = Data(alpha=1.5, use_cached_forum_data=True)
 fetching_time = time.time() - start_time
-print(f"Fetching time: {fetching_time}")
+print(f"Fetching time: {fetching_time:.3f}s")
 
 start_time = time.time()
 climber = TreeClimber(data)
 engine = Engine(data, climber)
 tree_building_time = time.time() - start_time
-print(f"Tree building time: {tree_building_time}")
+print(f"Tree building time: {tree_building_time:.3f}s")
 
 builder = HTMLBuilder()
 
@@ -48,4 +48,4 @@ def generate_branches(id_, depth=3):
 start_time = time.time()
 generate_branches("a", depth=50)
 page_building_time = time.time() - start_time
-print(f"Page building time: {page_building_time}")
+print(f"Page building time: {page_building_time:.3f}s")
