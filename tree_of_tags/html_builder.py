@@ -82,20 +82,24 @@ class HTMLBuilder:
     def build_page(self, filename, tags_left, tags_right, posts_left, posts_right):
         # build content
         tags_left_html = ""
+        num_of_left_tags = 0
         for tag, side_score in tags_left:
             if side_score > 0:
                 # skip tags which belong to the right side
                 continue
             tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
             tags_left_html += self.build_tag_html(tag_url, tag["name"])
+            num_of_left_tags += 1
 
         tags_right_html = ""
+        num_of_right_tags = 0
         for tag, side_score in tags_right:
             if side_score <= 0:
                 # skip tags which belong to the left side
                 continue
             tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
             tags_right_html += self.build_tag_html(tag_url, tag["name"])
+            num_of_right_tags += 1
 
         posts_left_html = ""
         for post in posts_left:
@@ -113,8 +117,18 @@ class HTMLBuilder:
         page_html = page_html.replace("__POSTS2__", posts_right_html)
 
         # set links to branches
-        page_html = page_html.replace("__BUTTON1_URL__", filename.split(".")[0] + "0.html")
-        page_html = page_html.replace("__BUTTON2_URL__", filename.split(".")[0] + "1.html")
+        if num_of_left_tags > 1:
+            page_html = page_html.replace("__BUTTON1_URL__", filename.split(".")[0] + "0.html")
+            page_html = page_html.replace("__BUTTON1_TEXT__", "Choose this branch")
+        else:
+            page_html = page_html.replace('href="__BUTTON1_URL__"', "")
+            page_html = page_html.replace("__BUTTON1_TEXT__", "You can't go any further")
+        if num_of_right_tags > 1:
+            page_html = page_html.replace("__BUTTON2_URL__", filename.split(".")[0] + "1.html")
+            page_html = page_html.replace("__BUTTON2_TEXT__", "Choose this branch")
+        else:
+            page_html = page_html.replace('href="__BUTTON2_URL__"', "")
+            page_html = page_html.replace("__BUTTON2_TEXT__", "You can't go any further")
 
         # save html file
         pages_folder = Path(__file__).parent.parent / "_site"
