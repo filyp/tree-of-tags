@@ -95,22 +95,22 @@ class Engine:
         for tag_id, side_score in reversed(self.tags_spectrum[-n:]):
             yield self.data.tags[tag_id], side_score
 
-    def get_best_left_posts(self, n=18):
+    def get_best_left_posts(self, n=18, ranking_func=(lambda post: post["score"])):
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = []
         for i in left_post_indexes:
             left_posts.append(self.sorted_posts[i])
 
-        sorted_left_posts = sorted(left_posts, key=lambda post: post["score"], reverse=True)
+        sorted_left_posts = sorted(left_posts, key=ranking_func, reverse=True)
         return sorted_left_posts[:n]
 
-    def get_best_right_posts(self, n=18):
+    def get_best_right_posts(self, n=18, ranking_func=(lambda post: post["score"])):
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = []
         for i in right_post_idexes:
             right_posts.append(self.sorted_posts[i])
 
-        sorted_right_posts = sorted(right_posts, key=lambda post: post["score"], reverse=True)
+        sorted_right_posts = sorted(right_posts, key=ranking_func, reverse=True)
         return sorted_right_posts[:n]
 
     def choose_left(self):
