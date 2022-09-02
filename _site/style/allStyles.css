@@ -1,5 +1,5 @@
 /* Originally taken from https://forum.effectivealtruism.org/allStyles
-but I changed 599.95px widths to 1199.95px */
+but I changed 599.95px widths to 1379.95px */
 
 /**
  * Draft v0.10.5
@@ -1655,7 +1655,7 @@ div#mocha {
   box-shadow: 0 1px 5px rgba(0,0,0,.025);
   margin-bottom: unset;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .AllTagsPage-portal td {
     width: 100% !important;
     height: inherit !important;
@@ -2164,7 +2164,7 @@ div#mocha {
   margin-left: 16px;
   margin-right: 16px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2018Landing-bookContentContainer {
     display: none;
   }
@@ -2316,7 +2316,7 @@ div#mocha {
     padding-left: 140px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Animation-root .parent-container {
     overflow: hidden;
     min-height: 150px;
@@ -2462,7 +2462,7 @@ div#mocha {
     max-width: 765px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-mainHeading {
     font-size: 2.3rem !important;
     padding-left: 170px;
@@ -2473,7 +2473,7 @@ div#mocha {
   font-style: italic;
   font-weight: normal;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-secondaryHeading {
     padding-left: 170px;
   }
@@ -2492,7 +2492,7 @@ div#mocha {
     padding-right: 0;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-bookExplanation {
     width: 100%;
     text-align: left;
@@ -2514,7 +2514,7 @@ div#mocha {
   align-items: center;
   justify-content: flex-end;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-buttonRow {
     flex-wrap: wrap-reverse;
     margin-left: 169px;
@@ -2536,7 +2536,7 @@ div#mocha {
     right: 0;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-closeButton {
     display: none;
   }
@@ -2549,7 +2549,7 @@ div#mocha {
   margin-left: auto;
   white-space: nowrap;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-mobileCloseButton {
     display: block;
   }
@@ -2557,7 +2557,7 @@ div#mocha {
 .Book2019FrontpageWidget-descriptionText {
   font-size: 0.96em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019FrontpageWidget-descriptionText {
     display: none;
   }
@@ -2583,7 +2583,7 @@ div#mocha {
     max-width: 675px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Landing-bookAnimationContainer {
     margin-bottom: 0;
     padding-bottom: 10px;
@@ -2609,7 +2609,7 @@ div#mocha {
       "reframing reframing reframing reframing reframing"
     ;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Landing-wrapper {
     padding: 0 10px 0 10px;
     grid-auto-columns: 100%;
@@ -2643,7 +2643,7 @@ div#mocha {
   flex-direction: column;
   justify-content: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Landing-title {
     top: unset;
     position: unset;
@@ -2718,7 +2718,7 @@ div#mocha {
 .Book2019Landing-bookCheckoutBackground {
   background: #fff;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Landing-bookCheckoutBackground {
     width: 100%;
   }
@@ -2737,7 +2737,7 @@ div#mocha {
   padding-top: 50px;
   padding-left: 100px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Book2019Landing-mainQuoteContainer {
     display: none;
   }
@@ -2908,7 +2908,7 @@ div#mocha {
     padding-left: 140px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookAnimation-root .parent-container {
     overflow: hidden;
     min-height: 350px;
@@ -3042,7 +3042,7 @@ div#mocha {
 .BookCheckout-root {
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookCheckout-root {
     max-width: 200px;
   }
@@ -3066,7 +3066,7 @@ div#mocha {
 .BookCheckout-checkoutButton:hover {
   opacity: 0.8;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookCheckout-checkoutButton {
     width: 175px;
   }
@@ -3081,7 +3081,7 @@ div#mocha {
   background: #fff;
   margin-left: 10px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookCheckout-intlButton {
     margin-left: 0;
   }
@@ -3107,7 +3107,7 @@ div#mocha {
     max-width: 765px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-mainHeading {
     font-size: 2.3rem !important;
     padding-left: 170px;
@@ -3118,7 +3118,7 @@ div#mocha {
   font-style: italic;
   font-weight: normal;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-secondaryHeading {
     padding-left: 170px;
   }
@@ -3137,7 +3137,7 @@ div#mocha {
     padding-right: 0;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-bookExplanation {
     width: 100%;
     text-align: left;
@@ -3159,7 +3159,7 @@ div#mocha {
   align-items: center;
   justify-content: flex-end;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-buttonRow {
     top: 220px;
     left: 0;
@@ -3189,7 +3189,7 @@ div#mocha {
     right: 0;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-closeButton {
     display: none;
   }
@@ -3202,7 +3202,7 @@ div#mocha {
   margin-left: auto;
   white-space: nowrap;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-mobileCloseButton {
     display: block;
   }
@@ -3210,7 +3210,7 @@ div#mocha {
 .BookFrontpageWidget-descriptionText {
   font-size: 0.96em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .BookFrontpageWidget-descriptionText {
     display: none;
   }
@@ -3493,7 +3493,7 @@ div#mocha {
     height: auto;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CollectionsCard-card {
     height: auto;
     padding: 10px;
@@ -3524,7 +3524,7 @@ div#mocha {
 .CollectionsCard-media img {
   width: 307px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CollectionsCard-media {
     display: none;
   }
@@ -3661,7 +3661,7 @@ div#mocha {
 .CollectionsItem-image {
   object-fit: cover;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CollectionsItem-image {
     width: 96px;
   }
@@ -3674,7 +3674,7 @@ div#mocha {
     width: 100%;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CollectionsItem-hideOnMobile {
     display: none;
   }
@@ -3919,7 +3919,7 @@ div#mocha {
   float: right;
   position: relative;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CommentOutdatedWarning-outdatedWarning {
     float: none;
     display: block;
@@ -4341,7 +4341,7 @@ div#mocha {
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
   padding-left: 3px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Community-whereTextDesktop {
     display: none;
   }
@@ -4349,7 +4349,7 @@ div#mocha {
 .Community-whereTextMobile {
   display: none;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Community-whereTextMobile {
     display: inline;
   }
@@ -4526,7 +4526,7 @@ div#mocha {
     background-image: linear-gradient(to right, rgba(8, 93, 108, 1) 200px, rgba(8, 93, 108, 0.4)), url(https://res.cloudinary.com/cea/image/upload/c_fill,h_300,w_1000,q_auto,f_auto/236225045_2995791057331456_5749161116892625450_n.jpg.jpg);
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CommunityBanner-bannerImg {
     height: auto;
     padding: 30px 40px;
@@ -4553,7 +4553,7 @@ div#mocha {
   position: absolute;
   font-size: 200px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CommunityBanner-bannerQuote {
     max-width: 100%;
     font-size: 18px;
@@ -4878,7 +4878,7 @@ div#mocha {
 .CommunityMembers-content {
   padding: 20px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CommunityMembers-content {
     padding-bottom: 30px;
   }
@@ -5161,7 +5161,7 @@ div#mocha {
   padding: 8px;
   max-width: 700px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ConversationPreview-root {
     display: none;
   }
@@ -5233,7 +5233,7 @@ div#mocha {
     min-height: 100px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CuratedContentItem-content {
     margin-right: 100px;
   }
@@ -5250,7 +5250,7 @@ div#mocha {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .CuratedContentItem-description {
     display: none;
   }
@@ -5432,7 +5432,7 @@ div#mocha {
   display: inline-block;
   opacity: 0.25;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EACoreReading-razLargeVersion {
     display: none;
   }
@@ -5616,7 +5616,7 @@ div#mocha {
     width: 100vw;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAHomeHandbook-bannerContainer {
     top: 77px;
   }
@@ -5713,7 +5713,7 @@ div#mocha {
   background: #fff;
   margin-bottom: 24px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfile-section {
     padding: 16px;
   }
@@ -5735,7 +5735,7 @@ div#mocha {
   border-bottom: 3px solid #0c869b;
   padding-bottom: 3px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfile-sectionHeading {
     font-size: 18px;
     column-gap: 8px;
@@ -5747,7 +5747,7 @@ div#mocha {
   font-size: 14px;
   font-weight: 400;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfile-sectionHeadingCount {
     font-size: 12px;
   }
@@ -5912,7 +5912,7 @@ div#mocha {
   background: #fff;
   margin-bottom: 24px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfileTabbedSection-section {
     padding: 16px;
   }
@@ -5939,7 +5939,7 @@ div#mocha {
   border-bottom: 3px solid transparent;
   padding-bottom: 3px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfileTabbedSection-tab {
     font-size: 18px;
     column-gap: 8px;
@@ -5960,7 +5960,7 @@ div#mocha {
   font-size: 14px;
   font-weight: 400;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EAUsersProfileTabbedSection-tabCount {
     font-size: 12px;
   }
@@ -6638,7 +6638,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border-radius: 0;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EventCards-eventCard {
     max-width: 100vw;
   }
@@ -6708,7 +6708,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: 14px;
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EventCards-addToCal {
     display: none;
   }
@@ -7026,7 +7026,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: 14px;
   text-transform: none;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EventsHome-notificationsBtn {
     padding: 8px 8px;
     font-size: 12px;
@@ -7036,7 +7036,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: 18px;
   margin-right: 6px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .EventsHome-notificationsIcon {
     font-size: 16px;
     margin-right: 4px;
@@ -7159,7 +7159,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   padding-right: 16px;
   margin-bottom: 20px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .FilterMode-filtering {
     width: calc(100% - 32px);
   }
@@ -7804,7 +7804,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: 1.1rem;
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .GardenCodesItem-root {
     width: 100%;
     flex-wrap: wrap;
@@ -7823,7 +7823,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .GardenCodesItem-eventName {
     width: 100%;
     margin-right: 8px;
@@ -7839,7 +7839,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: .9em;
   text-align: right;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .GardenCodesItem-eventTime {
     width: 100%;
     text-align: left;
@@ -7980,7 +7980,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   margin-left: 6px;
   margin-right: 24px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .GatherTown-icon {
     display: none;
   }
@@ -8023,7 +8023,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   font-size: .8em;
   font-style: italic;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .GatherTown-gardenCodesList {
     display: none;
   }
@@ -8159,7 +8159,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   height: 90px;
   flex-grow: 1;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Header-root {
     height: 77px;
   }
@@ -8282,7 +8282,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   justify-content: center;
   background-position: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .HighlightedEventCard-root {
     margin-left: -8px;
     margin-right: -8px;
@@ -8380,7 +8380,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
     display: none;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .HomeLatestPosts-hideOnMobile {
     display: none;
   }
@@ -8579,7 +8579,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   margin-top: 90px;
   margin-bottom: 30px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LargeSequencesItem-text {
     margin-top: 60px;
     margin-bottom: 0;
@@ -8635,7 +8635,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   opacity: 0.85;
   position: absolute;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LargeSequencesItem-sequenceImage {
     width: 100%;
   }
@@ -8671,7 +8671,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
 .LargeSequencesItem-columns {
   display: flex;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LargeSequencesItem-columns {
     flex-direction: column;
   }
@@ -8683,7 +8683,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   flex-direction: column;
   justify-content: flex-start;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LargeSequencesItem-left {
     width: 100%;
     justify-content: flex-start;
@@ -8694,7 +8694,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   padding: 20px;
   padding-left: 40px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LargeSequencesItem-right {
     width: 100%;
     padding-top: 0;
@@ -8718,7 +8718,7 @@ style~.EditorFormComponent-ckEditorStyles .ck blockquote p {
   white-space: nowrap;
   margin-right: 15px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LatestReview-root {
     display: none;
   }
@@ -9156,7 +9156,7 @@ p:last-child {
   align-items: baseline;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-titleRow {
     display: block;
   }
@@ -9169,13 +9169,13 @@ p:last-child {
   margin: 8px 4px 20px;
   justify-content: flex-end;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-notifyMe {
     margin-top: 30px;
     justify-content: flex-start;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-organizerActions {
     justify-content: flex-start !important;
   }
@@ -9218,7 +9218,7 @@ p:last-child {
   margin-top: 24px;
   margin-bottom: 20px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-groupDescription {
     margin-left: 0;
   }
@@ -9232,7 +9232,7 @@ p:last-child {
   margin-top: 40px;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-contactUsSection {
     display: block;
   }
@@ -9313,7 +9313,7 @@ p:last-child {
   margin-left: 0;
   margin-right: 0;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroupPage-mapContainer {
     height: 200px;
     max-width: none;
@@ -9368,7 +9368,7 @@ p:last-child {
 .LocalGroups-localGroup:last-of-type {
   border-bottom: none;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroups-localGroup {
     height: auto;
   }
@@ -9380,7 +9380,7 @@ p:last-child {
   justify-content: center;
   background-color: #e2f1f4;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroups-mobileImg {
     display: flex;
   }
@@ -9392,7 +9392,7 @@ p:last-child {
   background-repeat: no-repeat;
   background-position-y: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .LocalGroups-localGroupContent {
     height: auto;
     padding-left: 16px;
@@ -9641,7 +9641,7 @@ p:last-child {
   grid-template-areas: "image message";
   grid-template-columns: 36px 1fr;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .MessageItem-rootWithImages {
     grid-template-columns: 26px 1fr;
   }
@@ -10410,7 +10410,7 @@ p:last-child {
 .NotificationsItem-unread {
   background-color: inherit !important;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .NotificationsItem-preview {
     display: none;
   }
@@ -10587,7 +10587,7 @@ p:last-child {
 .OnlineGroups-onlineGroup:last-of-type {
   border-bottom: none;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-onlineGroup {
     height: auto;
   }
@@ -10599,7 +10599,7 @@ p:last-child {
   justify-content: center;
   background-color: #e2f1f4;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-mobileImg {
     display: flex;
   }
@@ -10619,7 +10619,7 @@ p:last-child {
     padding-left: 94px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-onlineGroupContent {
     height: auto;
     display: block;
@@ -10638,7 +10638,7 @@ p:last-child {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-onlineGroupNameRow {
     white-space: normal;
   }
@@ -10665,7 +10665,7 @@ p:last-child {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-onlineGroupDescription {
     -webkit-line-clamp: 4;
   }
@@ -10675,7 +10675,7 @@ p:last-child {
   align-self: center;
   margin-left: 14px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .OnlineGroups-onlineGroupJoin {
     text-align: right;
     margin-top: 16px;
@@ -10920,7 +10920,7 @@ p:last-child {
   font-size: 1.1rem;
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PortalBarGcalEventItem-root {
     width: 100%;
     flex-wrap: wrap;
@@ -10933,7 +10933,7 @@ p:last-child {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PortalBarGcalEventItem-eventName {
     width: 100%;
     margin-right: 8px;
@@ -10946,7 +10946,7 @@ p:last-child {
   font-size: .9em;
   text-align: right;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PortalBarGcalEventItem-eventTime {
     width: 100%;
     text-align: left;
@@ -11438,7 +11438,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     margin-right: -8px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsCompareRevisions-headerImageContainer {
     margin-top: -10px;
   }
@@ -11453,7 +11453,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     margin-top: 10px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsCompareRevisions-headerImageContainerWithComment {
     margin-top: 10px;
   }
@@ -11466,7 +11466,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 715px;
   margin: 0 auto;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsEditForm-postForm {
     width: 100%;
   }
@@ -11494,14 +11494,14 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsEditForm-postForm .form-submit {
   text-align: right;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsEditForm-postForm .vulcan-form .input-frontpage {
     right: 150px;
     width: 100px;
     bottom: 50px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsEditForm-postForm .vulcan-form .input-draft {
     right: 0;
     width: 100px;
@@ -11511,7 +11511,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     width: 100px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsEditForm-postForm .vulcan-form .input-draft, .PostsEditForm-postForm .vulcan-form .input-frontpage {
     width: 125px;
   }
@@ -11523,7 +11523,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 150px;
   margin: 0 0 6px 0;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsEditForm-postForm .vulcan-form .input-draft .checkbox, .PostsEditForm-postForm .vulcan-form .input-frontpage .checkbox {
     width: 150px;
   }
@@ -11622,7 +11622,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-size: 1rem;
   font-weight: 300;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItemDate-postedAt.PostsItemDate-postedAt {
     width: auto;
   }
@@ -11634,7 +11634,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-size: 1rem;
   font-weight: 300;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItemDate-startTime.PostsItemDate-startTime {
     width: auto;
   }
@@ -11680,7 +11680,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsItemIntroSequence-root {
   position: relative;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItemIntroSequence-root {
     width: 100%;
   }
@@ -11704,7 +11704,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   grid-template-areas: "karma title author";
   grid-template-columns: min-content 1fr min-content;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItemIntroSequence-postsItem {
     flex-wrap: wrap;
     padding-top: 8px;
@@ -11740,7 +11740,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     position: relative;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItemIntroSequence-title {
     max-width: 80%;
     padding-right: 8px;
@@ -11975,7 +11975,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsListPlaceholder-root {
   position: relative;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-root {
     width: 100%;
   }
@@ -12000,7 +12000,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   align-items: center;
   padding-bottom: 10px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-postsItem {
     flex-wrap: wrap;
     padding-top: 8px;
@@ -12020,7 +12020,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsListPlaceholder-commentsBackground {
   background-color: #fafafa;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-commentsBackground {
     padding-left: 4px;
     padding-right: 4px;
@@ -12030,7 +12030,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 42px;
   justify-content: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-karma {
     width: unset;
     margin-left: 2px;
@@ -12052,7 +12052,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     position: relative;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-title {
     flex: unset;
     order: -1;
@@ -12068,7 +12068,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsListPlaceholder-spacer {
   flex: 1;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-spacer {
     display: none;
   }
@@ -12083,7 +12083,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   text-overflow: ellipsis;
   justify-content: flex;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-author {
     flex: unset;
     width: unset;
@@ -12098,7 +12098,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-right: 12px;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-event {
     width: unset;
     margin-left: 0;
@@ -12112,7 +12112,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-right: 16px;
   margin-bottom: 1.3em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-newCommentsSection {
     padding: 0;
   }
@@ -12149,7 +12149,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   display: none;
   margin-right: 8px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-mobileActions {
     display: block;
   }
@@ -12167,7 +12167,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   position: relative;
   vertical-align: middle;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-mobileDismissButton {
     display: inline-block;
   }
@@ -12184,7 +12184,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     position: absolute;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-subtitle {
     order: -1;
     width: 100%;
@@ -12205,7 +12205,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-left: -60px;
   margin-bottom: -12px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-sequenceImage {
     right: 0;
     bottom: 0;
@@ -12229,7 +12229,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 146px;
   height: 48px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListPlaceholder-sequenceImageImg {
     width: auto;
     height: 100%;
@@ -12280,7 +12280,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsListSettings-selectionList {
   margin-right: 16px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListSettings-selectionList {
     flex: 1 0 calc(50% - 32px);
     order: 1;
@@ -12305,7 +12305,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   display: flex;
   align-items: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsListSettings-checkboxGroup {
     flex: 1 0 100%;
     order: 0;
@@ -12339,7 +12339,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 715px;
   margin: 0 auto;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsNewForm-postForm {
     width: 100%;
   }
@@ -12367,14 +12367,14 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsNewForm-postForm .form-submit {
   text-align: right;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsNewForm-postForm .vulcan-form .input-frontpage {
     right: 150px;
     width: 100px;
     bottom: 50px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsNewForm-postForm .vulcan-form .input-draft {
     right: 0;
     width: 100px;
@@ -12384,7 +12384,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     width: 100px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsNewForm-postForm .vulcan-form .input-draft, .PostsNewForm-postForm .vulcan-form .input-frontpage {
     width: 125px;
   }
@@ -12396,7 +12396,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 150px;
   margin: 0 0 6px 0;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsNewForm-postForm .vulcan-form .input-draft .checkbox, .PostsNewForm-postForm .vulcan-form .input-frontpage .checkbox {
     width: 150px;
   }
@@ -12453,7 +12453,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     margin-right: -8px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPage-headerImageContainer {
     margin-top: -10px;
   }
@@ -12468,7 +12468,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     margin-top: 10px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPage-headerImageContainerWithComment {
     margin-top: 10px;
   }
@@ -12507,7 +12507,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-weight: 400;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPageEventData-metadata {
     display: block;
   }
@@ -12553,7 +12553,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   flex: none;
   margin: 0 24px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPageEventData-onlineEventCTA {
     margin: 20px 0 0 12px;
   }
@@ -12576,7 +12576,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 300px;
   margin-left: 10px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPageEventData-mapbox {
     margin-top: 20px;
     margin-left: 0;
@@ -12738,7 +12738,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsPreviewTooltip-root img {
   max-height: 200px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsPreviewTooltip-root {
     display: none;
   }
@@ -12899,7 +12899,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   text-overflow: ellipsis;
   padding-bottom: 4px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsTimeBlock-smallScreenTitle {
     display: none;
   }
@@ -12951,7 +12951,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-right: 8px;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsTitle-root {
     white-space: unset;
     line-height: 1.8rem;
@@ -12980,7 +12980,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsTitle-read:hover {
   color: rgba(0,0,0,0.87);
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsTitle-hideSmDown {
     display: none;
   }
@@ -13019,7 +13019,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   text-align: right;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsUserAndCoauthors-lengthLimited {
     max-width: 160px;
   }
@@ -13100,7 +13100,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   height: 36px;
   border-radius: 50%;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ProfilePhoto-img {
     width: 26px;
     height: 26px;
@@ -13110,7 +13110,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   color: #bdbdbd;
   font-size: 36px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ProfilePhoto-emptyProfileImg {
     font-size: 26px;
   }
@@ -13126,7 +13126,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   text-transform: uppercase;
   justify-content: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ProfilePhoto-defaultProfileImg {
     font-size: 13px;
   }
@@ -13174,7 +13174,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     width: 33.3%;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .RSVPs-rsvpItem {
     width: 50%;
   }
@@ -13191,7 +13191,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .RSVPs-buttons {
     display: block;
   }
@@ -13201,7 +13201,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   align-items: center;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .RSVPs-topRow {
     display: block;
   }
@@ -13597,7 +13597,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   border-radius: 3px;
   margin-bottom: 4px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .RecentDiscussionThread-post {
     padding-top: 16px;
     padding-left: 14px;
@@ -13893,7 +13893,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   background: #fff;
   border-bottom: 1px solid rgba(0,0,0,0.15);
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-root {
     box-shadow: 0 1px 5px rgba(0,0,0,0.025);
     margin-bottom: 2px;
@@ -13920,7 +13920,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   align-items: center;
   justify-content: flex-end;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-postVote {
     flex-wrap: wrap;
   }
@@ -13936,7 +13936,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-right: 10px;
   padding-bottom: 8px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-post {
     max-width: calc(100% - 100px);
     background: #fff;
@@ -13998,7 +13998,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   align-items: center;
   background-color: #eeeeee;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-votes {
     width: 100%;
     padding: 7px;
@@ -14010,7 +14010,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .ReviewVoteTableRow-yourVote {
   margin-left: 6px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-yourVote {
     order: 0;
     margin-right: 10px;
@@ -14021,7 +14021,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-size: 12px;
   font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVoteTableRow-voteResults {
     order: 1;
     width: 100%;
@@ -14314,7 +14314,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   display: flex;
   white-space: pre;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .ReviewVotingPage-sortingOptions {
     padding-top: 12px;
     padding-left: 4px;
@@ -14386,7 +14386,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-bottom: 16px;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Reviews2018-settings {
     align-items: flex-end;
     flex-direction: column;
@@ -14406,7 +14406,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-bottom: 16px;
   justify-content: space-between;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .Reviews2019-settings {
     align-items: flex-end;
     flex-direction: column;
@@ -14558,7 +14558,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     width: 100%;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SearchBarResults-root {
     top: 78px;
   }
@@ -14689,7 +14689,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-bottom: 40px;
   border-radius: 3px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SearchPage-searchInputArea {
     width: 100%;
     margin-top: 12px;
@@ -14851,7 +14851,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   line-height: 1.5em;
   align-items: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SectionFooterCheckbox-root {
     flex: 1 0 100%;
     order: 0;
@@ -15448,13 +15448,13 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     margin-top: -100px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SequencesPage-content {
     padding: 8px;
     margin-top: 8px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SequencesPage-leftAction {
     text-align: left;
   }
@@ -16001,7 +16001,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-size: 1rem;
   font-weight: 300;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SingleLineTagUpdates-postedAt.SingleLineTagUpdates-postedAt {
     width: auto;
   }
@@ -16024,7 +16024,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-right: 16px;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SingleLineTagUpdates-usernames {
     max-width: 160px;
   }
@@ -16081,7 +16081,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     padding-bottom: 0;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SpreadsheetPage-introWrapper {
     display: block;
     padding: 16px;
@@ -16099,7 +16099,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   border-radius: 5px;
   background-color: #085d6c;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SpreadsheetPage-submitButton {
     display: block;
     margin-top: 24px;
@@ -16123,7 +16123,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     min-width: initial;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SpreadsheetPage-cellDescription {
     display: none;
   }
@@ -16167,7 +16167,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-bottom: 0;
   background-color: #424242;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SpreadsheetPage-headerCell {
     display: none;
   }
@@ -16417,7 +16417,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding: 0;
   border-left: 1px solid rgba(0,0,0,0.1);
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .SpreadsheetPage-topLinks {
     display: none;
   }
@@ -17442,12 +17442,12 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-variant: small-caps;
   letter-spacing: -.02em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagCompareRevisions-notifyMeButton {
     margin-top: 6px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagCompareRevisions-nonMobileButtonRow {
     display: none !important;
   }
@@ -17457,7 +17457,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     display: none !important;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagCompareRevisions-editMenu {
     margin-top: 16px;
     margin-bottom: 8px;
@@ -17663,7 +17663,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-right: 16px;
   margin-bottom: 20px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagFilterSettings-personalTooltip {
     width: calc(100% - 32px);
   }
@@ -17781,12 +17781,12 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   font-variant: small-caps;
   letter-spacing: -.02em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagPage-notifyMeButton {
     margin-top: 6px;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagPage-nonMobileButtonRow {
     display: none !important;
   }
@@ -17796,7 +17796,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     display: none !important;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagPage-editMenu {
     margin-top: 16px;
     margin-bottom: 8px;
@@ -17869,7 +17869,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   line-height: 1.5em;
   margin-bottom: 16px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagPageButtonRow-buttonsRow {
     margin-top: 8px;
   }
@@ -17953,7 +17953,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-right: 16px;
   padding-bottom: 6px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagPreview-card {
     width: 100%;
   }
@@ -18135,7 +18135,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .TagSearchHit-root:hover {
   color: #137283;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagSearchHit-card {
     display: none;
   }
@@ -18328,7 +18328,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-bottom: 10px;
   vertical-align: top;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagsDetailsItem-description {
     width: 100%;
     max-width: unset;
@@ -18401,7 +18401,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-left: 4px;
   margin-right: 8px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .TagsListItem-hideOnMobile {
     display: none;
   }
@@ -18589,7 +18589,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .UsersAccountMenu-signUpButton {
   display: inline-block;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .UsersAccountMenu-signUpButton {
     display: none;
   }
@@ -18603,7 +18603,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   max-width: 600px;
   margin-bottom: 100px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .UsersEditForm-root {
     width: 100%;
   }
@@ -18828,7 +18828,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border-radius: 0;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .VirtualProgramCard-eventCard {
     max-width: 100vw;
   }
@@ -19334,7 +19334,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsItem2-root {
   position: relative;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-root {
     width: 100%;
   }
@@ -19359,7 +19359,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   align-items: center;
   padding-bottom: 10px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-postsItem {
     flex-wrap: wrap;
     padding-top: 8px;
@@ -19379,7 +19379,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsItem2-commentsBackground {
   background-color: #fafafa;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-commentsBackground {
     padding-left: 4px;
     padding-right: 4px;
@@ -19389,7 +19389,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 42px;
   justify-content: center;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-karma {
     width: unset;
     margin-left: 2px;
@@ -19411,7 +19411,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     position: relative;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-title {
     flex: unset;
     order: -1;
@@ -19427,7 +19427,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
 .PostsItem2-spacer {
   flex: 1;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-spacer {
     display: none;
   }
@@ -19442,7 +19442,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   text-overflow: ellipsis;
   justify-content: flex;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-author {
     flex: unset;
     width: unset;
@@ -19457,7 +19457,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-right: 12px;
   text-overflow: ellipsis;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-event {
     width: unset;
     margin-left: 0;
@@ -19471,7 +19471,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   padding-right: 16px;
   margin-bottom: 1.3em;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-newCommentsSection {
     padding: 0;
   }
@@ -19508,7 +19508,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   display: none;
   margin-right: 8px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-mobileActions {
     display: block;
   }
@@ -19526,7 +19526,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   position: relative;
   vertical-align: middle;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-mobileDismissButton {
     display: inline-block;
   }
@@ -19543,7 +19543,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
     position: absolute;
   }
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-subtitle {
     order: -1;
     width: 100%;
@@ -19564,7 +19564,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   margin-left: -60px;
   margin-bottom: -12px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-sequenceImage {
     right: 0;
     bottom: 0;
@@ -19588,7 +19588,7 @@ style~.PostCollaborationEditor-editor .ck blockquote p {
   width: 146px;
   height: 48px;
 }
-@media (max-width:1199.95px) {
+@media (max-width:1379.95px) {
   .PostsItem2-sequenceImageImg {
     width: auto;
     height: 100%;
