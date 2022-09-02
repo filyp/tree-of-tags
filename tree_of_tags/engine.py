@@ -5,6 +5,12 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+prefix_to_ranking_func = {
+    "h": lambda post: post["score"],
+    "t": lambda post: post["baseScore"],
+    "c": lambda post: post["commentCount"] if post["commentCount"] is not None else 0,
+}
+
 
 class TreeClimber:
     def __init__(self, data):
@@ -103,21 +109,31 @@ class Engine:
         for tag_id, side_score in reversed(self.tags_spectrum[-n:]):
             yield self.data.tags[tag_id], side_score
 
-    def get_best_left_posts(self, n=18, ranking_func=(lambda post: post["score"])):
+    def get_best_left_posts(self, n=18, ranking_func_symbol="h"):
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = []
         for i in left_post_indexes:
-            left_posts.append(self.posts_alphabetical[i])
+            post = self.posts_alphabetical[i]
+            if ranking_func_symbol == "h" and post["score"] is None:
+                logger.debug(f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping")
+                continue
+            left_posts.append(post)
 
+        ranking_func = prefix_to_ranking_func[ranking_func_symbol]
         sorted_left_posts = sorted(left_posts, key=ranking_func, reverse=True)
         return sorted_left_posts[:n]
 
-    def get_best_right_posts(self, n=18, ranking_func=(lambda post: post["score"])):
+    def get_best_right_posts(self, n=18, ranking_func_symbol="h"):
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = []
         for i in right_post_idexes:
-            right_posts.append(self.posts_alphabetical[i])
+            post = self.posts_alphabetical[i]
+            if ranking_func_symbol == "h" and post["score"] is None:
+                logger.debug(f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping")
+                continue
+            right_posts.append(post)
 
+        ranking_func = prefix_to_ranking_func[ranking_func_symbol]
         sorted_right_posts = sorted(right_posts, key=ranking_func, reverse=True)
         return sorted_right_posts[:n]
 

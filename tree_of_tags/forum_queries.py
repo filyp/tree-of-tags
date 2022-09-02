@@ -7,6 +7,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+      # allVotes {
+      #   voteType
+      #   _id
+      # }
+
+
 posts_query = """
 {
   posts(input: {terms: {limit: %d, offset: %d}}) {
@@ -18,10 +24,6 @@ posts_query = """
         username
         displayName
         pageUrl
-      }
-      allVotes {
-        voteType
-        _id
       }
 			tagRelevance
       wordCount
@@ -79,7 +81,7 @@ def run_query(query, args, forum):
 def get_all_posts(forum="ea", chunk_size=4000):
     all_posts = dict()
     offset = 0
-    skipped_posts = 0
+    skipped_posts_no_tags = 0
     while True:
         current_posts = run_query(posts_query, (chunk_size, offset), forum)
         current_posts = current_posts["posts"]["results"]
@@ -91,12 +93,12 @@ def get_all_posts(forum="ea", chunk_size=4000):
         for post in current_posts:
             # skip posts with no tags
             if post["tagRelevance"] is None:
-                skipped_posts += 1
+                skipped_posts_no_tags += 1
                 continue
             all_posts[post["_id"]] = post
 
-    logger.info(f"Skipped {skipped_posts} posts with no tags")
-    assert len(all_posts) > 9000
+    logger.info(f"Skipped {skipped_posts_no_tags} posts with no tags")
+    assert len(all_posts) > 2000
 
     return all_posts
 
@@ -115,5 +117,5 @@ def get_all_tags(forum="ea", chunk_size=1000):
         for tag in current_tags:
             all_tags[tag["_id"]] = tag
 
-    assert len(all_tags) > 900
+    assert len(all_tags) > 700
     return all_tags

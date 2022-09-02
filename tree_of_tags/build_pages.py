@@ -9,11 +9,7 @@ import sys
 builder = HTMLBuilder()
 depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
 
-prefix_to_ranking_func = {
-    "h": lambda post: post["score"],
-    "t": lambda post: post["baseScore"],
-    "c": lambda post: post["commentCount"] if post["commentCount"] is not None else 0,
-}
+ranking_func_symbols = ["h", "t", "c"]
 
 
 def generate_branches(forum, engine, id_, depth=50):
@@ -21,14 +17,14 @@ def generate_branches(forum, engine, id_, depth=50):
         return
 
     # generate pages for current node
-    for prefix, ranking_func in prefix_to_ranking_func.items():
+    for ranking_func_symbol in ranking_func_symbols:
         builder.build_page(
-            f"{forum}/{prefix}{id_}.html",
+            f"{forum}/{ranking_func_symbol}{id_}.html",
             forum,
             engine.get_best_left_tags(),
             engine.get_best_right_tags(),
-            engine.get_best_left_posts(ranking_func=ranking_func),
-            engine.get_best_right_posts(ranking_func=ranking_func),
+            engine.get_best_left_posts(ranking_func_symbol=ranking_func_symbol),
+            engine.get_best_right_posts(ranking_func_symbol=ranking_func_symbol),
         )
 
     # generate left branch
@@ -44,7 +40,8 @@ def generate_branches(forum, engine, id_, depth=50):
         engine.go_back()
 
 
-for forum in ["ea", "lw", "af"]:
+# for forum in ["ea", "lw", "af"]:
+for forum in ["ea", "af"]:  # lw is 403 forbidden for now
     start_time = time.time()
     data = Data(alpha=1.5, use_cached_forum_data=True, forum=forum)
     print(f"{forum}: Fetching time: {time.time() - start_time:.3f}s")
