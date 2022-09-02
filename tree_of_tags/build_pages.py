@@ -46,7 +46,7 @@ def generate_branches(forum, engine, id_, depth=50):
 
 for forum in ["ea", "lw", "af"]:
     start_time = time.time()
-    data = Data(alpha=1.5, use_cached_forum_data=True)
+    data = Data(alpha=1.5, use_cached_forum_data=True, forum=forum)
     print(f"{forum}: Fetching time: {time.time() - start_time:.3f}s")
 
     start_time = time.time()
