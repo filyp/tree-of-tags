@@ -16,6 +16,17 @@ colors = {
     "af": "#3f51b5",
 }
 
+forum_urls = {
+  "ea": "https://forum.effectivealtruism.org",
+  "lw": "https://www.lesswrong.com",
+  "af": "https://www.alignmentforum.org",
+}
+forum_tag_urls = {
+  "ea": "https://forum.effectivealtruism.org/topic",
+  "lw": "https://www.lesswrong.com/tag",
+  "af": "https://www.alignmentforum.org/tag",
+}
+
 
 def timestamp_to_time_ago_str(post):
     timestamp = post["postedAt"]
@@ -67,10 +78,10 @@ class HTMLBuilder:
         tag_html = tag_html.replace("__TAG_NAME__", tag_name)
         return tag_html
 
-    def build_post_html(self, post):
+    def build_post_html(self, post, forum):
         post_html = self.post_template
         post_html = post_html.replace(
-            "__POST_URL__", f"https://forum.effectivealtruism.org/posts/{post['_id']}"
+            "__POST_URL__", f"{forum_urls[forum]}/posts/{post['_id']}"
         )
         post_html = post_html.replace("__POST_TITLE__", post["title"])
         if post["user"] is not None:
@@ -107,7 +118,7 @@ class HTMLBuilder:
             if side_score > 0:
                 # skip tags which belong to the right side
                 continue
-            tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
+            tag_url = f"{forum_tag_urls[forum]}/{tag['slug']}"
             tags_left_html += self.build_tag_html(tag_url, tag["name"])
             num_of_left_tags += 1
 
@@ -117,17 +128,17 @@ class HTMLBuilder:
             if side_score <= 0:
                 # skip tags which belong to the left side
                 continue
-            tag_url = f"https://forum.effectivealtruism.org/topics/{tag['slug']}"
+            tag_url = f"{forum_tag_urls[forum]}/{tag['slug']}"
             tags_right_html += self.build_tag_html(tag_url, tag["name"])
             num_of_right_tags += 1
 
         posts_left_html = ""
         for post in posts_left:
-            posts_left_html += self.build_post_html(post)
+            posts_left_html += self.build_post_html(post, forum)
 
         posts_right_html = ""
         for post in posts_right:
-            posts_right_html += self.build_post_html(post)
+            posts_right_html += self.build_post_html(post, forum)
 
         # build the whole page
         page_html = self.main_template
