@@ -1,5 +1,5 @@
 from forum_queries import get_all_posts, get_all_tags
-from persistence import save_forum_data, load_forum_data
+from persistence import save_object, load_object
 
 import numpy as np
 import networkx as nx
@@ -13,22 +13,23 @@ logger = logging.getLogger(__name__)
 
 
 class Data:
-    def __init__(self, use_cached_forum_data=True, use_cached_tree=True, alpha=1.5):
+    def __init__(self, use_cached_forum_data=True, use_cached_tree=True, alpha=1.5, forum="ea"):
         self.alpha = alpha
         # load data
+        filename = f"{forum}_posts_and_tags"
         if use_cached_forum_data:
-            forum_data = load_forum_data()
+            forum_data = load_object(filename)
             if forum_data is None:
                 logger.warn("No cached forum data found, fetching it...")
-                self.posts = get_all_posts()
-                self.tags = get_all_tags()
-                save_forum_data(self.posts, self.tags)
+                self.posts = get_all_posts(forum)
+                self.tags = get_all_tags(forum)
+                save_object((self.posts, self.tags), filename)
             else:
                 self.posts, self.tags = forum_data
         else:
-            self.posts = get_all_posts()
-            self.tags = get_all_tags()
-            save_forum_data(self.posts, self.tags)
+            self.posts = get_all_posts(forum)
+            self.tags = get_all_tags(forum)
+            save_object((self.posts, self.tags), filename)
 
         # create the cooccurence graph
         self.create_cooccurence_graph()

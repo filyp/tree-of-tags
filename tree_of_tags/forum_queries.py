@@ -19,6 +19,10 @@ posts_query = """
         displayName
         pageUrl
       }
+      allVotes {
+        voteType
+        _id
+      }
 			tagRelevance
       wordCount
       voteCount
@@ -56,9 +60,15 @@ tags_query = """
 }
 """
 
+forum_apis = {
+  "ea": "https://forum.effectivealtruism.org/graphql",
+  "lw": "https://www.lesswrong.com/graphql",
+  "af": "https://www.alignmentforum.org/graphql",
+}
 
-def run_query(query, args):
-    url = "https://forum.effectivealtruism.org/graphql"
+
+def run_query(query, args, forum):
+    url = forum_apis[forum]
     headers = {"Content-Type": "application/json"}
     full_query = query % args
     r = requests.post(url, json={"query": full_query}, headers=headers)
@@ -66,12 +76,12 @@ def run_query(query, args):
     return data["data"]
 
 
-def get_all_posts(chunk_size=4000):
+def get_all_posts(forum="ea", chunk_size=4000):
     all_posts = dict()
     offset = 0
     skipped_posts = 0
     while True:
-        current_posts = run_query(posts_query, (chunk_size, offset))
+        current_posts = run_query(posts_query, (chunk_size, offset), forum)
         current_posts = current_posts["posts"]["results"]
         offset += chunk_size
 
@@ -91,11 +101,11 @@ def get_all_posts(chunk_size=4000):
     return all_posts
 
 
-def get_all_tags(chunk_size=1000):
+def get_all_tags(forum="ea", chunk_size=1000):
     all_tags = dict()
     offset = 0
     while True:
-        current_tags = run_query(tags_query, (chunk_size, offset))
+        current_tags = run_query(tags_query, (chunk_size, offset), forum)
         current_tags = current_tags["tags"]["results"]
         offset += chunk_size
 

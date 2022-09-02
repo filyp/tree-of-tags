@@ -10,6 +10,12 @@ seconds_in_year = 365 * seconds_in_day
 
 full_time_indicator = 30  # how many minutes will fill the whole reading time indicator
 
+colors = {
+    "ea": "#0c869b",
+    "lw": "#5f9b65",
+    "af": "#3f51b5",
+}
+
 
 def timestamp_to_time_ago_str(post):
     timestamp = post["postedAt"]
@@ -93,7 +99,7 @@ class HTMLBuilder:
 
         return post_html
 
-    def build_page(self, filename, tags_left, tags_right, posts_left, posts_right):
+    def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right):
         # build content
         tags_left_html = ""
         num_of_left_tags = 0
@@ -129,16 +135,18 @@ class HTMLBuilder:
         page_html = page_html.replace("__TAGS2__", tags_right_html)
         page_html = page_html.replace("__POSTS1__", posts_left_html)
         page_html = page_html.replace("__POSTS2__", posts_right_html)
+        page_html = page_html.replace("__MAIN_COLOR__", colors[forum])
 
         # set links to branches
+        filename_relative = filename.split("/", 1)[1]
         if num_of_left_tags > 1:
-            page_html = page_html.replace("__BUTTON1_URL__", filename.split(".")[0] + "0.html")
+            page_html = page_html.replace("__BUTTON1_URL__", filename_relative.split(".")[0] + "0.html")
             page_html = page_html.replace("__BUTTON1_TEXT__", "Choose this branch")
         else:
             page_html = page_html.replace('href="__BUTTON1_URL__"', "")
             page_html = page_html.replace("__BUTTON1_TEXT__", "You can't go any further")
         if num_of_right_tags > 1:
-            page_html = page_html.replace("__BUTTON2_URL__", filename.split(".")[0] + "1.html")
+            page_html = page_html.replace("__BUTTON2_URL__", filename_relative.split(".")[0] + "1.html")
             page_html = page_html.replace("__BUTTON2_TEXT__", "Choose this branch")
         else:
             page_html = page_html.replace('href="__BUTTON2_URL__"', "")
