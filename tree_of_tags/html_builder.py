@@ -8,7 +8,7 @@ seconds_in_day = 24 * seconds_in_hour
 seconds_in_month = 30 * seconds_in_day
 seconds_in_year = 365 * seconds_in_day
 
-full_time_indicator = 30   # how many minutes will fill the whole reading time indicator
+full_time_indicator = 30  # how many minutes will fill the whole reading time indicator
 
 
 def timestamp_to_time_ago_str(post):
@@ -87,7 +87,9 @@ class HTMLBuilder:
             reading_time = 0
         reading_time_indicator_height = min(int(reading_time / full_time_indicator * 100), 100)
         post_html = post_html.replace("__HEIGHT__", str(reading_time_indicator_height))
-        post_html = post_html.replace("__HEIGHT_INVERSE__", str(100 - reading_time_indicator_height))
+        post_html = post_html.replace(
+            "__HEIGHT_INVERSE__", str(100 - reading_time_indicator_height)
+        )
 
         return post_html
 

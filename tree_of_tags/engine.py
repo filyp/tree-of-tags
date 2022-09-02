@@ -39,14 +39,27 @@ class TreeClimber:
 class Engine:
     def __init__(self, data, climber):
         self.data = data
-        self.sorted_posts = sorted(data.posts.values(), key=lambda post: post["_id"])
-        self.current_post_ids = np.ones_like(self.sorted_posts)
-        self.current_post_ids_history = []
+        self.posts_alphabetical = sorted(data.posts.values(), key=lambda post: post["_id"])
+        self.tags_alphabetical = sorted(data.tags.values(), key=lambda tag: tag["_id"])
+
+        self.current_post_ids = np.ones_like(self.posts_alphabetical)
+        self.state_history = []
         self.climber = climber
 
-        self.tag_occurences_in_posts = dict()
-        for tag in data.tags:
-            self.tag_occurences_in_posts[tag] = self.separate_posts_using_given_tags([], [tag])
+        # create a matrix of tag relevances for each tag and post pair
+        self.relevances = np.zeros((len(self.tags_alphabetical), len(self.posts_alphabetical)))
+        self.tag_indexes = dict()
+        for i, tag in enumerate(self.tags_alphabetical):
+            self.tag_indexes[tag["_id"]] = i
+        for j, post in enumerate(self.posts_alphabetical):
+            tag_relevances = post["tagRelevance"]
+            for tag, relevance in tag_relevances.items():
+                if tag in self.tag_indexes:
+                    i = self.tag_indexes[tag]
+                    self.relevances[i][j] = relevance
+                else:
+                    logger.debug(f"Tag {tag} listed by post {post['_id']} is not in the tags list")
+
         self.refresh()
 
     def separate_posts_using_given_tags(self, left_tags, right_tags):
@@ -54,14 +67,12 @@ class Engine:
         posts, should be a sorted list of all posts
         returns a numpy array of side attribution of each post
         """
-        post_sides = np.zeros_like(self.sorted_posts)  # negative is left, positive is right
-        for i, post in enumerate(self.sorted_posts):
-            tag_relevances = post["tagRelevance"]
-            for tag, relevance in tag_relevances.items():
-                if tag in left_tags:
-                    post_sides[i] -= relevance
-                elif tag in right_tags:
-                    post_sides[i] += relevance
+        post_sides = np.zeros_like(self.posts_alphabetical)  # negative is left, positive is right
+        for tag in left_tags:
+            post_sides -= self.relevances[self.tag_indexes[tag]]
+        for tag in right_tags:
+            post_sides += self.relevances[self.tag_indexes[tag]]
+
         return post_sides
 
     def get_most_separating_tags(self, desired_separation, candidate_tags):
@@ -72,20 +83,17 @@ class Engine:
         tag_usefulness = dict()
         mask = np.sign(desired_separation)
         for tag in candidate_tags:
-            tag_usefulness[tag] = np.sum(mask * self.tag_occurences_in_posts[tag])
+            tag_usefulness[tag] = mask @ self.relevances[self.tag_indexes[tag]]
 
         tag_usefulness_sorted = sorted(tag_usefulness.items(), key=lambda x: x[1])
         return tag_usefulness_sorted
 
     def refresh(self):
-        self.post_sides = self.separate_posts_using_given_tags(
-            self.climber.left, self.climber.right
-        )
-        self.left_posts = (self.post_sides < 0) * self.current_post_ids
-        self.right_posts = (self.post_sides >= 0) * self.current_post_ids
+        post_sides = self.separate_posts_using_given_tags(self.climber.left, self.climber.right)
+        self.left_posts = (post_sides < 0) * self.current_post_ids
+        self.right_posts = (post_sides >= 0) * self.current_post_ids
         candidate_tags = self.climber.left | self.climber.right
-        tag_usefulness_sorted = self.get_most_separating_tags(self.post_sides, candidate_tags)
-        self.tags_spectrum = tag_usefulness_sorted
+        self.tags_spectrum = self.get_most_separating_tags(post_sides, candidate_tags)
 
     def get_best_left_tags(self, n=12):
         for tag_id, side_score in self.tags_spectrum[:n]:
@@ -99,7 +107,7 @@ class Engine:
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = []
         for i in left_post_indexes:
-            left_posts.append(self.sorted_posts[i])
+            left_posts.append(self.posts_alphabetical[i])
 
         sorted_left_posts = sorted(left_posts, key=ranking_func, reverse=True)
         return sorted_left_posts[:n]
@@ -108,7 +116,7 @@ class Engine:
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = []
         for i in right_post_idexes:
-            right_posts.append(self.sorted_posts[i])
+            right_posts.append(self.posts_alphabetical[i])
 
         sorted_right_posts = sorted(right_posts, key=ranking_func, reverse=True)
         return sorted_right_posts[:n]
@@ -116,20 +124,25 @@ class Engine:
     def choose_left(self):
         self.climber.choose_left()
         # TODO shouldn't post_ids_history be a part of climber?
-        self.current_post_ids_history.append(self.current_post_ids)
+        self.state_history.append(self._get_state())
         self.current_post_ids = self.left_posts
         self.refresh()
 
     def choose_right(self):
         self.climber.choose_right()
-        self.current_post_ids_history.append(self.current_post_ids)
+        self.state_history.append(self._get_state())
         self.current_post_ids = self.right_posts
         self.refresh()
 
     def go_back(self):
         self.climber.go_back()
-        if len(self.current_post_ids_history) == 0:
+        if len(self.state_history) == 0:
             logger.info("Post history is empty, doing nothing")
             return
-        self.current_post_ids = self.current_post_ids_history.pop()
-        self.refresh()
+        self._set_state(self.state_history.pop())
+
+    def _get_state(self):
+        return (self.current_post_ids, self.tags_spectrum, self.left_posts, self.right_posts)
+
+    def _set_state(self, state):
+        self.current_post_ids, self.tags_spectrum, self.left_posts, self.right_posts = state
