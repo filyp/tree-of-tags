@@ -62,6 +62,11 @@ class HTMLBuilder:
         with open(main_template_filename, "r") as f:
             self.main_template = f.read()
 
+        # load post html template
+        post_template_filename = template_folder / "post_template.html"
+        with open(post_template_filename, "r") as f:
+            self.post_template = f.read()
+
         # load tag html template
         tag_template_filename = template_folder / "tag_template.html"
         with open(tag_template_filename, "r") as f:
@@ -74,20 +79,20 @@ class HTMLBuilder:
         return tag_html
 
     def build_post_html(self, post, forum):
-        post_html = '["__SCORE__", "__POST_ID__", "__POST_TITLE__", "__USER_SLUG__", "__USER_NAME__", "__TIME_AGO__", "__COMMENT_COUNT__", "__HEIGHT_INVERSE__", "__HEIGHT__"],'
+        # post_html = self.post_template
+        post_html = '["__SCORE__", "__POST_URL__", "__POST_TITLE__", "__USER_URL__", "__USER_NAME__", "__TIME_AGO__", "__COMMENT_COUNT__", "__HEIGHT_INVERSE__", "__HEIGHT__"],'
 
 
-        # post_html = post_html.replace("__POST_ID__", f"{forum_urls[forum]}/posts/{post['_id']}")
-        post_html = post_html.replace("__POST_ID__", post['_id'])
-        post_html = post_html.replace("__POST_TITLE__", post["title"].replace('"', "&quot;"))
+        post_html = post_html.replace("__POST_URL__", f"{forum_urls[forum]}/posts/{post['_id']}")
+        post_html = post_html.replace("__POST_TITLE__", post["title"])
         if post["user"] is not None:
             user_url = post["user"]["pageUrl"]
             user_name = post["user"]["displayName"]
         else:
             user_url = ""
             user_name = ""
-        post_html = post_html.replace("__USER_SLUG__", user_url.split("/")[-1].replace('"', "&quot;"))
-        post_html = post_html.replace("__USER_NAME__", user_name.replace('"', "&quot;"))
+        post_html = post_html.replace("__USER_URL__", user_url)
+        post_html = post_html.replace("__USER_NAME__", user_name)
         post_html = post_html.replace("__SCORE__", str(post["baseScore"]))
         comment_count = str(post["commentCount"]) if post["commentCount"] is not None else "0"
         post_html = post_html.replace("__COMMENT_COUNT__", comment_count)
@@ -138,7 +143,7 @@ class HTMLBuilder:
             posts_right_html += self.build_post_html(post, forum)
 
         # build the whole page
-        page_html = self.main_template.replace("__FORUM_URL__", forum_urls[forum])
+        page_html = self.main_template
         page_html = page_html.replace("__TAGS1__", tags_left_html)
         page_html = page_html.replace("__TAGS2__", tags_right_html)
         page_html = page_html.replace("__POSTS1__", posts_left_html)
