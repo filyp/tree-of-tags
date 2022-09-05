@@ -9,7 +9,7 @@ import sys
 builder = HTMLBuilder()
 depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
 
-ranking_func_symbols = ["h", "t", "c"]
+ranking_func_symbols = ["h", "t"]
 
 
 def generate_branches(forum, engine, id_, depth=50):
@@ -19,7 +19,7 @@ def generate_branches(forum, engine, id_, depth=50):
     # generate pages for current node
     for ranking_func_symbol in ranking_func_symbols:
         builder.build_page(
-            f"{forum}/{ranking_func_symbol}{id_}.html",
+            f"A{ranking_func_symbol}r{id_}.html",
             forum,
             engine.get_best_left_tags(),
             engine.get_best_right_tags(),

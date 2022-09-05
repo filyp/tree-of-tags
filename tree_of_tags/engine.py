@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 prefix_to_ranking_func = {
     "h": lambda post: post["score"],
     "t": lambda post: post["baseScore"],
-    "c": lambda post: post["commentCount"] if post["commentCount"] is not None else 0,
+    # "c": lambda post: post["commentCount"] if post["commentCount"] is not None else 0,
 }
 
 
@@ -115,7 +115,9 @@ class Engine:
         for i in left_post_indexes:
             post = self.posts_alphabetical[i]
             if ranking_func_symbol == "h" and post["score"] is None:
-                logger.debug(f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping")
+                logger.debug(
+                    f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping"
+                )
                 continue
             left_posts.append(post)
 
@@ -129,7 +131,9 @@ class Engine:
         for i in right_post_idexes:
             post = self.posts_alphabetical[i]
             if ranking_func_symbol == "h" and post["score"] is None:
-                logger.debug(f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping")
+                logger.debug(
+                    f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping"
+                )
                 continue
             right_posts.append(post)
 

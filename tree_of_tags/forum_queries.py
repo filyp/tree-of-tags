@@ -7,12 +7,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-      # allVotes {
-      #   voteType
-      #   _id
-      # }
-
-
+# allVotes {
+#   voteType
+#   _id
+# }
 posts_query = """
 {
   posts(input: {terms: {limit: %d, offset: %d}}) {
@@ -62,10 +60,40 @@ tags_query = """
 }
 """
 
+comments_query = """
+{
+  comments(input: {terms: {limit: %d, offset: %d}}){
+    results {
+      allVotes {
+        voteType
+        _id
+      }
+  	  parentCommentId
+  	  postedAt
+  	  author
+  	  postId
+  	  tagId
+  	  userId
+  	  pageUrlRelative
+  	  answer
+  	  parentAnswerId
+  	  directChildrenCount
+  	  lastSubthreadActivity
+  	  wordCount
+  	  _id
+  	  voteCount
+  	  baseScore
+  	  score
+  	}
+  }
+}
+"""
+
+
 forum_apis = {
-  "ea": "https://forum.effectivealtruism.org/graphql",
-  "lw": "https://www.lesswrong.com/graphql",
-  "af": "https://www.alignmentforum.org/graphql",
+    "ea": "https://forum.effectivealtruism.org/graphql",
+    "lw": "https://www.lesswrong.com/graphql",
+    "af": "https://www.alignmentforum.org/graphql",
 }
 
 
@@ -119,3 +147,25 @@ def get_all_tags(forum="ea", chunk_size=1000):
 
     assert len(all_tags) > 700
     return all_tags
+
+
+def get_all_comments(forum="ea", chunk_size=4000):
+    """
+    Watch out, this query takes ~3 minutes
+    """
+    all_comments = dict()
+    offset = 0
+    while True:
+        current_comments = run_query(comments_query, (chunk_size, offset), forum)
+        current_comments = current_comments["comments"]["results"]
+        offset += chunk_size
+
+        if len(current_comments) == 0:
+            break
+
+        for comment in current_comments:
+            all_comments[comment["_id"]] = comment
+        # break
+
+    assert len(all_comments) > 700
+    return all_comments

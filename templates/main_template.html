@@ -12,34 +12,25 @@
 
 
   <style>
-    .item1 {
-      grid-area: button1;
+    .item1 { grid-area: leftUI; }
+    .item2 { grid-area: rightUI; }
+    .item3 { grid-area: tags1; }
+    .item4 { grid-area: tags2; }
+    .item5 { grid-area: posts1; }
+    .item6 { grid-area: posts2; }
+    .leftUI {
+        display: flex;
+        /* column-gap: 30px; */
+        column-gap: max(30px, calc(40% - 125px));
     }
-
-    .item1 {
-      grid-area: button2;
+    .rightUI {
+        display: flex;
+        column-gap: 30px;
     }
-
-    .item2 {
-      grid-area: tags1;
-    }
-
-    .item2 {
-      grid-area: tags2;
-    }
-
-    .item3 {
-      grid-area: posts1;
-    }
-
-    .item3 {
-      grid-area: posts2;
-    }
-
     .grid-container {
       display: grid;
       grid-template-areas:
-        'button1 button2'
+        'leftUI rightUI'
         'tags1 tags2'
         'posts1 posts2';
       column-gap: 30px;
@@ -48,6 +39,40 @@
       justify-content: center;
       padding-top: 40px;
       padding-bottom: 80px;
+    }
+    .control-board {
+        display: flex;
+        width: 40%;
+        height: 100%;
+        column-gap: 5px;
+        flex-direction: row-reverse;
+    }
+    .control-selector {
+        display: flex;
+        height: 100%;
+        column-gap: 0px;
+        flex-direction: column;
+    }
+    .control-button {
+      background-color: #bbb;
+      /* background-color: #dfdfdf; */
+      text-align: center;
+      font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+      font-size: 10px;
+      color: #fff;
+      height: 20px;
+      line-height: 20px;
+    }
+    .control-button-selected {
+      background-color: #0c869b;
+      border: 3px solid #bbb;
+      /* border: 3px solid #dfdfdf; */
+      text-align: center;
+      font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+      font-size: 10px;
+      color: #fff;
+      height: 20px;
+      line-height: 14px;
     }
 
     .button {
@@ -61,9 +86,6 @@
       font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
       font-size: 1.3rem;
       color: rgba(0, 0, 0, 0.87);
-
-      /* margin-left: 4%;
-      margin-right: 4%; */
       margin-bottom: 30px;
     }
 
@@ -138,12 +160,25 @@
   class="abTestNoEffect_group2 collectionsPageABTest_largeSequenceItemGroup booksProgressBarABTest_progressBar welcomeBoxABTest_control twoLineEventsSidebar_expanded">
   <div class="grid-container">
 
-    <div class="button1">
-      <a href="__BUTTON1_URL__" class="button">__BUTTON1_TEXT__</a>
+    <div class="leftUI">
+      <a href="__BUTTON_BACK_URL__" class="button" style="width: 125px">Go Back</a>
+      <a href="__BUTTON1_URL__" class="button" style="width: 60%">__BUTTON1_TEXT__</a>
     </div>
 
-    <div class="button2">
-      <a href="__BUTTON2_URL__" class="button">__BUTTON2_TEXT__</a>
+    <div class="rightUI">
+      <a href="__BUTTON2_URL__" class="button" style="width: 60%">__BUTTON2_TEXT__</a>
+      <div class="control-board">
+        <div class="control-selector" style="width: 80px;">
+            <a href="__MERITOCRATIC_URL__" class="control-button">meritocratic</a>
+            <a href="__REGULAR_URL__" class="control-button">regular</a>
+            <a href="__DEMOCRATIC_URL__" class="control-button">democratic</a>
+        </div>
+        <div class="control-selector" style="width: 40px;">
+            <a href="__HOT_URL__" class="control-button">hot</a>
+            <a href="__TOP_URL__" class="control-button">top</a>
+            <a href="__ALIVE_URL__" class="control-button">alive</a>
+        </div>
+      </div>
     </div>
 
     <div class="tags1">
