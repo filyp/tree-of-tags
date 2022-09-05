@@ -79,10 +79,7 @@ class HTMLBuilder:
         return tag_html
 
     def build_post_html(self, post, forum):
-        # post_html = self.post_template
-        post_html = '["__SCORE__", "__POST_URL__", "__POST_TITLE__", "__USER_URL__", "__USER_NAME__", "__TIME_AGO__", "__COMMENT_COUNT__", "__HEIGHT_INVERSE__", "__HEIGHT__"],'
-
-
+        post_html = self.post_template
         post_html = post_html.replace("__POST_URL__", f"{forum_urls[forum]}/posts/{post['_id']}")
         post_html = post_html.replace("__POST_TITLE__", post["title"])
         if post["user"] is not None:
@@ -109,7 +106,6 @@ class HTMLBuilder:
             "__HEIGHT_INVERSE__", str(100 - reading_time_indicator_height)
         )
 
-        post_html = post_html.replace("\n", "") + "\n"
         return post_html
 
     def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right):

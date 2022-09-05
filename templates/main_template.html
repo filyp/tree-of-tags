@@ -199,102 +199,22 @@
 
     <div class="posts1">
       <div class="">
-        <div class="PostsList2-posts" id="posts1">
+        <div class="PostsList2-posts">
+          __POSTS1__
         </div>
       </div>
     </div>
 
     <div class="posts2">
       <div class="">
-        <div class="PostsList2-posts" id="posts2">
+        <div class="PostsList2-posts">
+          __POSTS2__
         </div>
       </div>
     </div>
 
   </div>
 
-<script>
-let tags1 = [
-  __POSTS1__
-];
-let html1 = "";
-for (const x of tags1) {
-  html1 += `
-        <div class="PostsItem2-root PostsItem2-background PostsItem2-bottomBorder">
-            <div class="PostsItem2-postsItem PostsItem2-withGrayHover">
-                <span
-                    class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItem2-karma"><span
-                        class="LWTooltip-root">${x[0]}</span></span><span class="PostsItem2-title"><span><span
-                            class="PostsTitle-root"><a
-                                href="${x[1]}"><span><span>${x[2]}
-                                </span></span></a><span class="PostsTitle-hideSmDown"><span
-                                    class="PostsItemIcons-iconSet"></span></span></span></span></span><span
-                    class="PostsItem2-spacer"></span><span
-                    class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItem2-author">
-                    <div class="PostsUserAndCoauthors-lengthLimited"><span><span class=""><a class="UsersNameDisplay-userName"
-                                    href="${x[3]}">${x[4]}</a></span></span></div>
-                </span><span class="LWTooltip-root"><span
-                        class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItemDate-postedAt">${x[5]}</span></span>
-                <div class="PostsItem2-mobileSecondRowSpacer"></div>
-                <div class="PostsItemComments-commentsIconLarge"><svg
-                        class="MuiSvgIcon-root PostsItemComments-commentCountIcon PostsItemComments-noUnreadComments"
-                        focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-                        <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"></path>
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                    </svg>
-                    <div class="PostsItemComments-commentCount">${x[6]}</div>
-                </div>
-                <div class="timerect">
-                    <div class="timerect_top" style="height:${x[7]}%"></div>
-                    <div class="timerect_bottom" style="height:${x[8]}%"></div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-document.getElementById("posts1").innerHTML = html1;
-
-
-let tags2 = [
-  __POSTS2__
-];
-let html2 = "";
-for (const x of tags2) {
-  html2 += `
-        <div class="PostsItem2-root PostsItem2-background PostsItem2-bottomBorder">
-            <div class="PostsItem2-postsItem PostsItem2-withGrayHover">
-                <span
-                    class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItem2-karma"><span
-                        class="LWTooltip-root">${x[0]}</span></span><span class="PostsItem2-title"><span><span
-                            class="PostsTitle-root"><a
-                                href="${x[1]}"><span><span>${x[2]}
-                                </span></span></a><span class="PostsTitle-hideSmDown"><span
-                                    class="PostsItemIcons-iconSet"></span></span></span></span></span><span
-                    class="PostsItem2-spacer"></span><span
-                    class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItem2-author">
-                    <div class="PostsUserAndCoauthors-lengthLimited"><span><span class=""><a class="UsersNameDisplay-userName"
-                                    href="${x[3]}">${x[4]}</a></span></span></div>
-                </span><span class="LWTooltip-root"><span
-                        class="Typography-root Typography-body2 PostsItem2MetaInfo-metaInfo PostsItemDate-postedAt">${x[5]}</span></span>
-                <div class="PostsItem2-mobileSecondRowSpacer"></div>
-                <div class="PostsItemComments-commentsIconLarge"><svg
-                        class="MuiSvgIcon-root PostsItemComments-commentCountIcon PostsItemComments-noUnreadComments"
-                        focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-                        <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"></path>
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                    </svg>
-                    <div class="PostsItemComments-commentCount">${x[6]}</div>
-                </div>
-                <div class="timerect">
-                    <div class="timerect_top" style="height:${x[7]}%"></div>
-                    <div class="timerect_bottom" style="height:${x[8]}%"></div>
-                </div>
-            </div>
-        </div>
-    `;
-}
-document.getElementById("posts2").innerHTML = html2;
-</script>
-
 </body>
+
 </html>
