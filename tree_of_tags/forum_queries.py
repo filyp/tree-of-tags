@@ -102,6 +102,11 @@ def run_query(query, args, forum):
     headers = {"Content-Type": "application/json"}
     full_query = query % args
     r = requests.post(url, json={"query": full_query}, headers=headers)
+    # check for errors
+    if r.status_code != 200:
+        raise Exception(
+            f"Query failed to run by returning code of {r.status_code}.\nurl: {url}\nheaders: {headers}\nquery: {full_query}"
+        )
     data = json.loads(r.text)
     return data["data"]
 
