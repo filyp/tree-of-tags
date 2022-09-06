@@ -40,8 +40,8 @@ def generate_branches(forum, engine, id_, depth=50):
         engine.go_back()
 
 
-# for forum in ["ea", "lw", "af"]:
-for forum in ["ea", "af"]:  # lw is 403 forbidden for now
+for forum in ["ea", "lw", "af"]:
+# for forum in ["ea", "af"]:  # lw is 403 forbidden for now
     start_time = time.time()
     data = Data(alpha=1.5, use_cached_forum_data=True, forum=forum)
     print(f"{forum}: Fetching time: {time.time() - start_time:.3f}s")
