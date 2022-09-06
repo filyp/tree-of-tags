@@ -99,7 +99,7 @@ forum_apis = {
 
 def run_query(query, args, forum):
     url = forum_apis[forum]
-    headers = {"Content-Type": "application/json"}
+    headers = {"User-Agent": "Tree of Tags"}
     full_query = query % args
     r = requests.post(url, json={"query": full_query}, headers=headers)
     # check for errors
