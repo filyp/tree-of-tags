@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 class Data:
-    def __init__(self, use_cached_forum_data=True, use_cached_tree=True, alpha=1.5, forum="ea"):
+    def __init__(self, use_cached_forum_data=True, alpha=2, forum="ea"):
         self.alpha = alpha
         # load data
         filename = f"{forum}_posts_and_tags"
@@ -31,9 +31,17 @@ class Data:
             self.tags = get_all_tags(forum)
             save_object((self.posts, self.tags), filename)
 
-        # create the cooccurence graph
-        self.create_cooccurence_graph()
-        self.build_tree()
+        # load tree
+        tree_filename = f"{forum}_tree_{alpha:.1f}"
+        tree_info = load_object(tree_filename)
+        if tree_info is not None:
+            self.tree, self.dendrogram, self.Tag_cooccurence, self.alpha = tree_info
+        else:
+            logger.warn("No cached tree found, generating it...")
+            self.Tag_cooccurence = self.create_cooccurence_graph()
+            self.tree, self.dendrogram = self.build_tree(self.Tag_cooccurence)
+            tree_info = (self.tree, self.dendrogram, self.Tag_cooccurence, self.alpha)
+            save_object(tree_info, tree_filename)
 
     def create_cooccurence_graph(self):
         Tag_cooccurence = nx.Graph()
@@ -72,17 +80,17 @@ class Data:
         # removed_tags = set(Tag_cooccurence.nodes) - set(Tag_cooccurence_trimmed.nodes)
         # for tag in removed_tags:
         #     print(self.tags[tag]["name"])
-        self.Tag_cooccurence = Tag_cooccurence_trimmed
+        return Tag_cooccurence_trimmed
 
-    def build_tree(self):
-        self._dendrogram = krakow(self.Tag_cooccurence, alpha=self.alpha, beta=1)
-        tree = to_tree(self._dendrogram)
+    def build_tree(self, Tag_cooccurence):
+        _dendrogram = krakow(Tag_cooccurence, alpha=self.alpha, beta=1)
+        tree = to_tree(_dendrogram)
 
         # convert leaf values to original ids
-        ids_list = np.array(self.Tag_cooccurence.nodes)
+        ids_list = np.array(Tag_cooccurence.nodes)
 
         def substitute_id(leaf):
             leaf.id = ids_list[leaf.id]
 
         tree.pre_order(substitute_id)
-        self.tree = tree
+        return tree, _dendrogram

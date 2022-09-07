@@ -168,16 +168,16 @@ class HTMLBuilder:
 
         # build UI contols
         # fmt: off
-        clustering_version = filename[0]
+        tree_version = filename[0]
         ranking_method = filename[1]
         karma_manipulation = filename[2]
         branch_id = filename[3:]
-        page_html = page_html.replace("__MERITOCRATIC_URL__", clustering_version + ranking_method + "m" + branch_id)
-        page_html = page_html.replace("__REGULAR_URL__",      clustering_version + ranking_method + "r" + branch_id)
-        page_html = page_html.replace("__DEMOCRATIC_URL__",   clustering_version + ranking_method + "d" + branch_id)
-        page_html = page_html.replace("__HOT_URL__",          clustering_version + "h" + karma_manipulation + branch_id)
-        page_html = page_html.replace("__TOP_URL__",          clustering_version + "t" + karma_manipulation + branch_id)
-        page_html = page_html.replace("__ALIVE_URL__",        clustering_version + "a" + karma_manipulation + branch_id)
+        page_html = page_html.replace("__MERITOCRATIC_URL__", tree_version + ranking_method + "m" + branch_id)
+        page_html = page_html.replace("__REGULAR_URL__",      tree_version + ranking_method + "r" + branch_id)
+        page_html = page_html.replace("__DEMOCRATIC_URL__",   tree_version + ranking_method + "d" + branch_id)
+        page_html = page_html.replace("__HOT_URL__",          tree_version + "h" + karma_manipulation + branch_id)
+        page_html = page_html.replace("__TOP_URL__",          tree_version + "t" + karma_manipulation + branch_id)
+        page_html = page_html.replace("__ALIVE_URL__",        tree_version + "a" + karma_manipulation + branch_id)
         if karma_manipulation == "m":
             page_html = page_html.replace('"control-button">m', '"control-button-selected">m')
         elif karma_manipulation == "r":
