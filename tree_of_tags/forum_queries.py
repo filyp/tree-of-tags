@@ -1,5 +1,6 @@
 import json
 import requests
+import datetime
 
 import logging
 
@@ -59,7 +60,7 @@ tags_query = """
 }
 """
 
-comments_query = """
+comments_query_full = """
 {
   comments(input: {terms: {limit: %d, offset: %d}}){
     results {
@@ -88,12 +89,30 @@ comments_query = """
 }
 """
 
+comments_query = """
+{
+  comments(input: {terms: {limit: %d, offset: %d}}){
+    results {
+  	  postedAt
+  	  postId
+  	}
+  }
+}
+"""
 
 forum_apis = {
     "ea": "https://forum.effectivealtruism.org/graphql",
     "lw": "https://www.lesswrong.com/graphql",
     "af": "https://www.alignmentforum.org/graphql",
 }
+
+
+def _timestamp_to_age_in_seconds(timestamp):
+    # convert timestamp of the form "%Y-%m-%dT%H:%M:%S.%fZ" string to a unix timestamp
+    timestamp = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ")
+    # get current UTC time
+    now = datetime.datetime.utcnow()
+    return int((now - timestamp).total_seconds())
 
 
 def run_query(query, args, forum):
@@ -129,6 +148,10 @@ def get_all_posts(forum="ea", chunk_size=4000):
                 continue
             all_posts[post["_id"]] = post
 
+    # * calculate how many seconds passed since the post was created
+    for post in all_posts.values():
+        post["age_in_seconds"] = _timestamp_to_age_in_seconds(post["postedAt"])
+
     logger.info(f"Skipped {skipped_posts_no_tags} posts with no tags")
     assert len(all_posts) > 2000
 
@@ -153,9 +176,9 @@ def get_all_tags(forum="ea", chunk_size=1000):
     return all_tags
 
 
-def get_all_comments(forum="ea", chunk_size=4000):
+def get_all_comments(forum="ea", chunk_size=1000, younger_than=None):
     """
-    Watch out, this query takes ~3 minutes
+    Watch out, getting all comments takes ~3 minutes for EA Forum, for LW probably longer
     """
     all_comments = dict()
     offset = 0
@@ -165,11 +188,15 @@ def get_all_comments(forum="ea", chunk_size=4000):
         offset += chunk_size
 
         if len(current_comments) == 0:
-            break
+            return all_comments
 
         for comment in current_comments:
-            all_comments[comment["_id"]] = comment
-        # break
+            postId = comment["postId"]
+            comment["age_in_seconds"] = _timestamp_to_age_in_seconds(comment["postedAt"])
 
-    assert len(all_comments) > 700
-    return all_comments
+            if postId not in all_comments:
+                all_comments[postId] = []
+            all_comments[postId].append(comment)
+
+            if younger_than is not None and comment["age_in_seconds"] > younger_than:
+                return all_comments

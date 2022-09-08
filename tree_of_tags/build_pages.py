@@ -9,8 +9,7 @@ import sys
 builder = HTMLBuilder()
 depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
 
-ranking_func_symbols = ["hm", "hr", "hd", "tm", "tr", "td"]
-# ranking_func_symbols = ["hm", "hr", "hd", "tm", "tr", "td", "am", "ar", "ad"]
+ranking_func_symbols = ["hm", "hr", "hd", "tm", "tr", "td", "am", "ar", "ad"]
 
 
 def generate_branches(forum, engine, tree_version, id_, depth=50):

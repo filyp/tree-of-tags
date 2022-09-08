@@ -67,7 +67,7 @@ class Engine:
         posts, should be a sorted list of all posts
         returns a numpy array of side attribution of each post
         """
-        post_sides = np.zeros(len(self.posts_alphabetical))   # negative is left, positive is right
+        post_sides = np.zeros(len(self.posts_alphabetical))  # negative is left, positive is right
         for tag in left_tags:
             post_sides -= self.relevances[self.tag_indexes[tag]]
         for tag in right_tags:
@@ -106,13 +106,17 @@ class Engine:
     def get_best_left_posts(self, n=18, ranking_func_symbol="hr"):
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = [self.posts_alphabetical[i] for i in left_post_indexes]
-        sorted_left_posts = sorted(left_posts, key=lambda post: post[ranking_func_symbol], reverse=True)
+        sorted_left_posts = sorted(
+            left_posts, key=lambda post: post[ranking_func_symbol], reverse=True
+        )
         return sorted_left_posts[:n]
 
     def get_best_right_posts(self, n=18, ranking_func_symbol="hr"):
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = [self.posts_alphabetical[i] for i in right_post_idexes]
-        sorted_right_posts = sorted(right_posts, key=lambda post: post[ranking_func_symbol], reverse=True)
+        sorted_right_posts = sorted(
+            right_posts, key=lambda post: post[ranking_func_symbol], reverse=True
+        )
         return sorted_right_posts[:n]
 
     def choose_left(self):
