@@ -1,4 +1,5 @@
-- There are no redundant tags - only 13 pairs of tags have >50% overlap.
+- On LessWrong, for some reason the cluster of democratic posts is clearly separated from meritocratic posts
+- There are no redundant tags - only 13 pairs of EA forum tags have >50% overlap.
 - Only 6% of all pairs of tags cooccur with each other.
 - 16%! of posts on AF have no score
 - there are 1k tags, 10k posts, and 100k comments on EA forum

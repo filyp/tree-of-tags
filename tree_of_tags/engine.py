@@ -5,12 +5,6 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-prefix_to_ranking_func = {
-    "h": lambda post: post["score"],
-    "t": lambda post: post["baseScore"],
-    # "c": lambda post: post["commentCount"] if post["commentCount"] is not None else 0,
-}
-
 
 class TreeClimber:
     def __init__(self, data):
@@ -48,7 +42,7 @@ class Engine:
         self.posts_alphabetical = sorted(data.posts.values(), key=lambda post: post["_id"])
         self.tags_alphabetical = sorted(data.tags.values(), key=lambda tag: tag["_id"])
 
-        self.current_post_ids = np.ones_like(self.posts_alphabetical)
+        self.current_post_ids = np.ones(len(self.posts_alphabetical))
         self.state_history = []
         self.climber = climber
 
@@ -73,7 +67,7 @@ class Engine:
         posts, should be a sorted list of all posts
         returns a numpy array of side attribution of each post
         """
-        post_sides = np.zeros_like(self.posts_alphabetical)  # negative is left, positive is right
+        post_sides = np.zeros(len(self.posts_alphabetical))   # negative is left, positive is right
         for tag in left_tags:
             post_sides -= self.relevances[self.tag_indexes[tag]]
         for tag in right_tags:
@@ -109,36 +103,16 @@ class Engine:
         for tag_id, side_score in reversed(self.tags_spectrum[-n:]):
             yield self.data.tags[tag_id], side_score
 
-    def get_best_left_posts(self, n=18, ranking_func_symbol="h"):
+    def get_best_left_posts(self, n=18, ranking_func_symbol="hr"):
         left_post_indexes = np.nonzero(self.left_posts)[0]
-        left_posts = []
-        for i in left_post_indexes:
-            post = self.posts_alphabetical[i]
-            if ranking_func_symbol == "h" and post["score"] is None:
-                logger.debug(
-                    f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping"
-                )
-                continue
-            left_posts.append(post)
-
-        ranking_func = prefix_to_ranking_func[ranking_func_symbol]
-        sorted_left_posts = sorted(left_posts, key=ranking_func, reverse=True)
+        left_posts = [self.posts_alphabetical[i] for i in left_post_indexes]
+        sorted_left_posts = sorted(left_posts, key=lambda post: post[ranking_func_symbol], reverse=True)
         return sorted_left_posts[:n]
 
-    def get_best_right_posts(self, n=18, ranking_func_symbol="h"):
+    def get_best_right_posts(self, n=18, ranking_func_symbol="hr"):
         right_post_idexes = np.nonzero(self.right_posts)[0]
-        right_posts = []
-        for i in right_post_idexes:
-            post = self.posts_alphabetical[i]
-            if ranking_func_symbol == "h" and post["score"] is None:
-                logger.debug(
-                    f"Post {post['_id']} has no score, and it's needed for 'hot' ranking, skipping"
-                )
-                continue
-            right_posts.append(post)
-
-        ranking_func = prefix_to_ranking_func[ranking_func_symbol]
-        sorted_right_posts = sorted(right_posts, key=ranking_func, reverse=True)
+        right_posts = [self.posts_alphabetical[i] for i in right_post_idexes]
+        sorted_right_posts = sorted(right_posts, key=lambda post: post[ranking_func_symbol], reverse=True)
         return sorted_right_posts[:n]
 
     def choose_left(self):

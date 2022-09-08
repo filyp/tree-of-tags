@@ -1,4 +1,4 @@
-import datetime
+from asyncio.log import logger
 from pathlib import Path
 
 
@@ -22,21 +22,14 @@ forum_urls = {
     "af": "https://www.alignmentforum.org",
 }
 forum_tag_urls = {
-    "ea": "https://forum.effectivealtruism.org/topic",
+    "ea": "https://forum.effectivealtruism.org/topics",
     "lw": "https://www.lesswrong.com/tag",
     "af": "https://www.alignmentforum.org/tag",
 }
 
 
 def timestamp_to_time_ago_str(post):
-    timestamp = post["postedAt"]
-
-    # convert timestamp of the form "%Y-%m-%dT%H:%M:%S.%fZ" string to a unix timestamp
-    timestamp = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%fZ")
-    # get current UTC time
-    now = datetime.datetime.utcnow()
-    seconds_passed = int((now - timestamp).total_seconds())
-
+    seconds_passed = post.age_in_seconds
     years_passed = seconds_passed // seconds_in_year
     if years_passed > 0:
         return f"{years_passed}y"
@@ -85,6 +78,8 @@ class HTMLBuilder:
         if post["user"] is not None:
             user_url = post["user"]["pageUrl"]
             user_name = post["user"]["displayName"]
+            if user_name is None:
+                user_name = post["user"]["username"]
         else:
             user_url = ""
             user_name = ""

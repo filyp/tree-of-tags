@@ -7,10 +7,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# allVotes {
-#   voteType
-#   _id
-# }
 posts_query = """
 {
   posts(input: {terms: {limit: %d, offset: %d}}) {
@@ -22,6 +18,9 @@ posts_query = """
         username
         displayName
         pageUrl
+      }
+      allVotes {
+        voteType
       }
 			tagRelevance
       wordCount
