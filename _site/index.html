@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tree of Tags</title>
+    <link data-react-helmet="true" rel="shortcut icon"
+        href="https://images.ctfassets.net/ohf186sfn6di/7J4cBC9SXCWMoqqCIqI0GI/affe205261bb8cff47501a0ada0f2268/ea-logo-square-1200x1200__1_.png?h=50">
+    <link data-react-helmet="true" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700&amp;subset=all">
+    <link data-react-helmet="true" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,500,600,700">
+
+    <style>
+        .button {
+            display: block;
+            border: none;
+            background-color: #eeeeee;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+            font-size: 1.3rem;
+            color: rgba(0, 0, 0, 0.87);
+            margin-bottom: 30px;
+        }
+
+        .title {
+            text-align: center;
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 5rem;
+            margin-top: 0;
+            font-weight: 400;
+            font-family: GreekFallback, Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1.25;
+            margin-left: 0;
+            margin-bottom: 8px;
+            letter-spacing: -.02em;
+        }
+
+        .image-column {
+            float: left;
+            width: 33.33%;
+            padding: 20px;
+        }
+        .forum-titles {
+            text-align: center;
+            font-size: 19px;
+            color: rgba(0,0,0,.87);
+        }
+    </style>
+
+    <link rel="stylesheet" onerror="window.missingMainStylesheet=true" href="ea/style/allStyles.css">
+
+    <!-- Pixel Code for https://app.tinyanalytics.io/ -->
+    <script defer src="https://app.tinyanalytics.io/pixel/ESlPU2JQQNtdcLik"></script>
+    <!-- END Pixel Code -->
+</head>
+
+
+
+<body>
+    <div class="Layout-main">
+        <h1 class="title">Tree of Tags</h1>
+        <div class="ToCColumn-content">
+            <div class="PostsPage-centralColumn">
+                <div class="PostsPage-postContent ContentStyles-base content ContentStyles-postBody">
+                    <div>
+
+                        <img src="logo.png" alt="logo" />
+
+                        <h1 id="Introduction">Explore the hidden treasures of the forums</h1>
+                        <p>
+                            With this tool you can zoom in on your favorite topics from EA Forum, LessWrong, and Alignment Forum. Or you can just wander around and see what you find.
+                        </p>
+                        <p>
+                            You start by seeing the whole forum split into two main topics. Choose the one that you like more, and that topic will be split again into two subtopics. Choose a subtopic, and again, you will see it split into two subsubtopics (and so on).
+                        </p>
+                        <p>
+                            It's like climbing a tree, where you start at the trunk and then choose which branches to go into as you go higher.
+                        </p>
+                        <p>
+                            Choose a forum to climb:
+                        </p>
+
+                        <div style="height: 280px;">
+                            <div class="image-column">
+                                <a href="ea/ahr.html" >
+                                    <img src="ea_logo.png" alt="ea_logo" />
+                                    <div class="forum-titles">
+                                            EA Forum
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="image-column">
+                                <a href="lw/ahr.html" >
+                                    <img src="lw_logo.png" alt="lw_logo" />
+                                    <div class="forum-titles">
+                                            LessWrong
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="image-column">
+                                <a href="af/ahr.html" >
+                                    <img src="af_logo.png" alt="af_logo" />
+                                    <div class="forum-titles">
+                                            Alignment Forum
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                            
+                            
+
+                        <h1 id="Features">Features</h1>
+                        <p>
+                            Each topic has a unique and unchanging URL. So if you find a place you like, just bookmark it! The posts inside will be updated, but the theme stays the same.
+                        </p>
+                        <p>
+                            The bar at the right of each post is the reading time indicator. Full bar means 30 min, half bar means 15 min, and so on.
+                        </p>
+                        <p>
+                            At the top right, you can choose how to rank the posts:
+                        </p>
+
+                        <ul>
+                            <li>
+                                hot - new and upvoted - the default forum ranking
+                            </li>
+                            <li>
+                                top - most upvotes
+                            </li>
+                            <li>
+                                alive - has recent comments
+                            </li>
+                            <li>
+                                meritocratic - votes from high karma users are exaggerated
+                            </li>
+                            <li>
+                                regular - default scoring
+                            </li>
+                            <li>
+                                democratic - posts are scored as if everyone has 0 karma
+                            </li>
+                        </ul>  
+
+                        <p>
+                            I found that in topics where I know a lot, meritocratic scoring gives me more interesting content. But in topics where I'm new, democratic may be better - the posts it shows are more generally appreciated and often easier.
+                        </p>
+
+
+
+                        <h1 id="Hopes">My hopes</h1>
+
+                        <p>
+                            The amount of content is overwhelming. My problem is not that there's nothing good to read, but that there is so much to plow through to find what's best for me.
+                        </p>
+                        <p>
+                            Also, it's sad to see great posts receive so little attention, the moment after they are pushed off the frontpage. But they are still valuable, and for each forgotten post, there is someone who should read it.
+                            So I want to make the right topics find their way to the right people.
+                        </p>
+                        <p>
+                            Let's make the forums
+                            <a href="https://notes.andymatuschak.org/Evergreen_notes"><u>evergreen</u></a>!
+                        </p>
+
+
+
+
+                        <ol class="footnotes" role="doc-endnotes">
+                            <a href="details.html"><u>
+                                <div style="text-align: center;">
+                                    How does it all work?
+                                </div>
+                            </u></a>
+                        </ol>
+                    
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
