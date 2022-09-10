@@ -11,6 +11,9 @@ depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
 
 ranking_func_symbols = ["hm", "hr", "hd", "tm", "tr", "td", "am", "ar", "ad"]
 
+num_of_tags = 9
+num_of_posts = 14
+
 
 def generate_branches(forum, engine, tree_version, id_, depth=50):
     if depth == 0:
@@ -21,10 +24,10 @@ def generate_branches(forum, engine, tree_version, id_, depth=50):
         builder.build_page(
             f"{tree_version}{ranking_func_symbol}{id_}.html",
             forum,
-            engine.get_best_left_tags(),
-            engine.get_best_right_tags(),
-            engine.get_best_left_posts(ranking_func_symbol=ranking_func_symbol),
-            engine.get_best_right_posts(ranking_func_symbol=ranking_func_symbol),
+            engine.get_best_left_tags(num_of_tags),
+            engine.get_best_right_tags(num_of_tags),
+            engine.get_best_left_posts(num_of_posts, ranking_func_symbol),
+            engine.get_best_right_posts(num_of_posts, ranking_func_symbol),
         )
 
     # generate left branch

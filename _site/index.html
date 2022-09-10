@@ -4,7 +4,7 @@
 <head>
     <title>Tree of Tags</title>
     <link data-react-helmet="true" rel="shortcut icon"
-        href="https://images.ctfassets.net/ohf186sfn6di/7J4cBC9SXCWMoqqCIqI0GI/affe205261bb8cff47501a0ada0f2268/ea-logo-square-1200x1200__1_.png?h=50">
+        href="logo_small.png">
     <link data-react-helmet="true" rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700&amp;subset=all">
     <link data-react-helmet="true" rel="stylesheet"
@@ -47,6 +47,21 @@
             font-size: 19px;
             color: rgba(0,0,0,.87);
         }
+        .Layout-main-custom {
+        grid-area: main;
+        background: #f6f8f9;
+        min-height: calc(100vh - 90px);
+        padding-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 15px;
+        }
+        @media (max-width:959.95px) {
+        .Layout-main-custom {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        }
     </style>
 
     <link rel="stylesheet" onerror="window.missingMainStylesheet=true" href="ea/style/allStyles.css">
@@ -59,7 +74,7 @@
 
 
 <body>
-    <div class="Layout-main">
+    <div class="Layout-main-custom">
         <h1 class="title">Tree of Tags</h1>
         <div class="ToCColumn-content">
             <div class="PostsPage-centralColumn">

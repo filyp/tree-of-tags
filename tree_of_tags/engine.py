@@ -95,15 +95,15 @@ class Engine:
         candidate_tags = self.climber.left | self.climber.right
         self.tags_spectrum = self.get_most_separating_tags(post_sides, candidate_tags)
 
-    def get_best_left_tags(self, n=12):
+    def get_best_left_tags(self, n=9):
         for tag_id, side_score in self.tags_spectrum[:n]:
             yield self.data.tags[tag_id], side_score
 
-    def get_best_right_tags(self, n=12):
+    def get_best_right_tags(self, n=9):
         for tag_id, side_score in reversed(self.tags_spectrum[-n:]):
             yield self.data.tags[tag_id], side_score
 
-    def get_best_left_posts(self, n=18, ranking_func_symbol="hr"):
+    def get_best_left_posts(self, n=14, ranking_func_symbol="hr"):
         left_post_indexes = np.nonzero(self.left_posts)[0]
         left_posts = [self.posts_alphabetical[i] for i in left_post_indexes]
         sorted_left_posts = sorted(
@@ -111,7 +111,7 @@ class Engine:
         )
         return sorted_left_posts[:n]
 
-    def get_best_right_posts(self, n=18, ranking_func_symbol="hr"):
+    def get_best_right_posts(self, n=14, ranking_func_symbol="hr"):
         right_post_idexes = np.nonzero(self.right_posts)[0]
         right_posts = [self.posts_alphabetical[i] for i in right_post_idexes]
         sorted_right_posts = sorted(
