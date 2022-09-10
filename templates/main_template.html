@@ -78,17 +78,18 @@
     }
 
     .button {
-      display: block;
-      border: none;
-      background-color: #eeeeee;
-
-      padding: 20px;
-      cursor: pointer;
-      text-align: center;
-      font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
-      font-size: 1.3rem;
-      color: rgba(0, 0, 0, 0.87);
-      margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #eeeeee;
+        padding: 20px;
+        cursor: pointer;
+        text-align: center;
+        font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+        font-size: 1.3rem;
+        color: rgba(0, 0, 0, 0.87);
+        margin-bottom: 30px;
     }
 
     .timerect_top{
@@ -194,24 +195,26 @@
   <div class="grid-container">
 
     <div class="leftUI">
-      <a href="__BUTTON_BACK_URL__" class="button" style="width: 125px">Go Back</a>
-      <a href="__BUTTON1_URL__" class="button" style="width: 60%">__BUTTON1_TEXT__</a>
+        <div class="control-board" style="flex-direction: row;">
+            <a href="__BUTTON_BACK_URL__" class="button" style="width: 125px">Go Back</a>
+        </div>
+        <a href="__BUTTON1_URL__" class="button" style="width: 60%">__BUTTON1_TEXT__</a>
     </div>
 
     <div class="rightUI">
-      <a href="__BUTTON2_URL__" class="button" style="width: 60%">__BUTTON2_TEXT__</a>
-      <div class="control-board">
-        <div class="control-selector" style="width: 80px;">
-            <a href="__MERITOCRATIC_URL__" class="control-button">meritocratic</a>
-            <a href="__REGULAR_URL__" class="control-button">regular</a>
-            <a href="__DEMOCRATIC_URL__" class="control-button">democratic</a>
+        <a href="__BUTTON2_URL__" class="button" style="width: 60%">__BUTTON2_TEXT__</a>
+        <div class="control-board">
+            <div class="control-selector" style="width: 80px;">
+                <a href="__MERITOCRATIC_URL__" class="control-button">meritocratic</a>
+                <a href="__REGULAR_URL__" class="control-button">regular</a>
+                <a href="__DEMOCRATIC_URL__" class="control-button">democratic</a>
+            </div>
+            <div class="control-selector" style="width: 40px;">
+                <a href="__HOT_URL__" class="control-button">hot</a>
+                <a href="__TOP_URL__" class="control-button">top</a>
+                <a href="__ALIVE_URL__" class="control-button">alive</a>
+            </div>
         </div>
-        <div class="control-selector" style="width: 40px;">
-            <a href="__HOT_URL__" class="control-button">hot</a>
-            <a href="__TOP_URL__" class="control-button">top</a>
-            <a href="__ALIVE_URL__" class="control-button">alive</a>
-        </div>
-      </div>
     </div>
 
     <div class="tags1">

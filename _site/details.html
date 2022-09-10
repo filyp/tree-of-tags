@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tree of Tags</title>
+    <link data-react-helmet="true" rel="shortcut icon"
+        href="logo_small.png">
+    <link data-react-helmet="true" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700&amp;subset=all">
+    <link data-react-helmet="true" rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,500,600,700">
+
+    <style>
+        .button {
+            display: block;
+            border: none;
+            background-color: #eeeeee;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+            font-size: 1.3rem;
+            color: rgba(0, 0, 0, 0.87);
+            margin-bottom: 30px;
+        }
+
+        .title {
+            text-align: center;
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 5rem;
+            margin-top: 0;
+            font-weight: 400;
+            font-family: GreekFallback, Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+            line-height: 1.25;
+            margin-left: 0;
+            margin-bottom: 8px;
+            letter-spacing: -.02em;
+        }
+
+        .image-column {
+            float: left;
+            width: 33.33%;
+            padding: 20px;
+        }
+        .forum-titles {
+            text-align: center;
+            font-size: 19px;
+            color: rgba(0,0,0,.87);
+        }
+        .Layout-main-custom {
+        grid-area: main;
+        background: #f6f8f9;
+        min-height: calc(100vh - 90px);
+        padding-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 15px;
+        }
+        @media (max-width:959.95px) {
+        .Layout-main-custom {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        }
+    </style>
+
+    <link rel="stylesheet" onerror="window.missingMainStylesheet=true" href="ea/style/allStyles.css">
+
+    <!-- Pixel Code for https://app.tinyanalytics.io/ -->
+    <script defer src="https://app.tinyanalytics.io/pixel/ESlPU2JQQNtdcLik"></script>
+    <!-- END Pixel Code -->
+
+    <script data-goatcounter="https://filyp.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+
+
+
+<body>
+    <div class="Layout-main-custom">
+        <div class="ToCColumn-content">
+            <div class="PostsPage-centralColumn">
+                <div class="PostsPage-postContent ContentStyles-base content ContentStyles-postBody">
+                    <div>
+
+                        <h1>Code</h1>
+                        <p>
+                            All the code can be found in
+                            <a href="https://github.com/filyp/tree-of-tags"><u>github.com/filyp/tree-of-tags</u></a>.
+                        </p>
+
+                        <h1>Clustering</h1>
+                        <p>
+                            First, we calculate which tags cooccur with each other. With this we create a graph where tags are nodes, and edge weights are the number of their cooccurences.
+                        </p>
+                        <p>
+                            This graph is then clustered hierarchichally with the
+                            <a href="https://github.com/filyp/krakow"><u>Krakow algorithm</u></a>.
+                            It outputs a tree, that you can climb to narrow down on some subtopic.
+                        </p>
+                        <p>
+                            There are many possible ways to cluster a graph. For each forum I chose 3 best distinct clusterings. I documented this process in 
+                            <a href="https://github.com/filyp/tree-of-tags/blob/main/tree_of_tags/analyze_clustering_quality.ipynb"><u>this notebook</u></a>.
+                        </p>
+                        <p>
+                            Here is an example of such a cluster-tree:
+                        </p>
+                        <img src="example_clustering.png" alt="example clustering" />
+
+                        <h1>Alternative trees</h1>
+                        <p>
+                            The default tree is named "a". You can also try out two others ("b" and "c"), by changing the url from:
+                            <blockquote>
+                            https://filyp.github.io/tree-of-tags/ea/<b>a</b>...
+                            </blockquote>
+                            to:
+                            <blockquote>
+                            https://filyp.github.io/tree-of-tags/ea/<b>b</b>...
+                            <br>
+                            https://filyp.github.io/tree-of-tags/ea/<b>c</b>...
+                            </blockquote>
+                        </p>
+                        <p>
+                            <a href="https://forum.effectivealtruism.org/users/filip-sondej"><u>Let me know</u></a>
+                            if you find one of them better than the default one - I'm still deciding which is best.
+                        </p>
+                    
+                        <h1>Democracy and meritocracy</h1>
+                        <p>
+                            Democratic scores are computed as:
+                            <br>
+                                \(num\_of\_upvotes + num\_of\_strong\_upvotes - num\_of\_downvotes - num\_of\_strong\_downvotes\)
+                            <br>
+                            Karma isn't taken into account at all.
+                        </p>
+                        <p>
+                            Meritocratic scores are computed as:
+                            <br>
+                                \(normal\_score - democratic\_score\)
+                            <br>
+                            So only the points which are due to high karma are counted.
+                        </p>
+                        <p>
+                            To make the contrast between those two scorings starker, all the posts are split into two equal groups based on the ratio of \(meritocratic\_score/democratic\_score\).
+                            So when you choose for example the meritocratic ranking, you will only see the posts from the "meritocratic group". Unless there's too few of them - then, the other group will be used too.
+
+                        </p>
+
+                        <h1>Other</h1>
+                        <p>
+                            The logo was generated with
+                            <a href="https://stability.ai/"><u>Stable Diffusion</u></a> (+ some manual finishing touches).
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>

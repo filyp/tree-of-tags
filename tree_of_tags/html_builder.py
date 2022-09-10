@@ -71,7 +71,7 @@ class HTMLBuilder:
         tag_html = tag_html.replace("__TAG_NAME__", tag_name)
         return tag_html
 
-    def build_post_html(self, post, forum):
+    def build_post_html(self, post, forum, cracy):
         post_html = self.post_template
         post_html = post_html.replace("__POST_URL__", f"{forum_urls[forum]}/posts/{post['_id']}")
         post_html = post_html.replace("__POST_TITLE__", post["title"])
@@ -85,7 +85,10 @@ class HTMLBuilder:
             user_name = ""
         post_html = post_html.replace("__USER_URL__", user_url)
         post_html = post_html.replace("__USER_NAME__", user_name)
-        post_html = post_html.replace("__SCORE__", str(post["baseScore"]))
+        score = str(post["t" + cracy])  # display the score accorting to chosen cracy
+        if score == "-inf":
+            score = "-"
+        post_html = post_html.replace("__SCORE__", score)
         comment_count = str(post["commentCount"]) if post["commentCount"] is not None else "0"
         post_html = post_html.replace("__COMMENT_COUNT__", comment_count)
         post_html = post_html.replace("__TIME_AGO__", timestamp_to_time_ago_str(post))
@@ -104,6 +107,11 @@ class HTMLBuilder:
         return post_html
 
     def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right):
+        tree_version = filename[0]
+        ranking_method = filename[1]
+        cracy = filename[2]
+        branch_id = filename[3:]
+
         # build content
         tags_left_html = ""
         num_of_left_tags = 0
@@ -127,11 +135,11 @@ class HTMLBuilder:
 
         posts_left_html = ""
         for post in posts_left:
-            posts_left_html += self.build_post_html(post, forum)
+            posts_left_html += self.build_post_html(post, forum, cracy)
 
         posts_right_html = ""
         for post in posts_right:
-            posts_right_html += self.build_post_html(post, forum)
+            posts_right_html += self.build_post_html(post, forum, cracy)
 
         # build the whole page
         page_html = self.main_template
@@ -163,21 +171,17 @@ class HTMLBuilder:
 
         # build UI contols
         # fmt: off
-        tree_version = filename[0]
-        ranking_method = filename[1]
-        karma_manipulation = filename[2]
-        branch_id = filename[3:]
         page_html = page_html.replace("__MERITOCRATIC_URL__", tree_version + ranking_method + "m" + branch_id)
         page_html = page_html.replace("__REGULAR_URL__",      tree_version + ranking_method + "r" + branch_id)
         page_html = page_html.replace("__DEMOCRATIC_URL__",   tree_version + ranking_method + "d" + branch_id)
-        page_html = page_html.replace("__HOT_URL__",          tree_version + "h" + karma_manipulation + branch_id)
-        page_html = page_html.replace("__TOP_URL__",          tree_version + "t" + karma_manipulation + branch_id)
-        page_html = page_html.replace("__ALIVE_URL__",        tree_version + "a" + karma_manipulation + branch_id)
-        if karma_manipulation == "m":
+        page_html = page_html.replace("__HOT_URL__",          tree_version + "h" + cracy + branch_id)
+        page_html = page_html.replace("__TOP_URL__",          tree_version + "t" + cracy + branch_id)
+        page_html = page_html.replace("__ALIVE_URL__",        tree_version + "a" + cracy + branch_id)
+        if cracy == "m":
             page_html = page_html.replace('"control-button">m', '"control-button-selected">m')
-        elif karma_manipulation == "r":
+        elif cracy == "r":
             page_html = page_html.replace('"control-button">r', '"control-button-selected">r')
-        elif karma_manipulation == "d":
+        elif cracy == "d":
             page_html = page_html.replace('"control-button">d', '"control-button-selected">d')
         if ranking_method == "h":
             page_html = page_html.replace('"control-button">h', '"control-button-selected">h')
