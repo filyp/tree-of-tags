@@ -130,25 +130,37 @@
                         </p>
                     
                         <h1>Democracy and meritocracy</h1>
-                        <p>
-                            Democratic scores are computed as:
-                            <br>
-                                \(num\_of\_upvotes + num\_of\_strong\_upvotes - num\_of\_downvotes - num\_of\_strong\_downvotes\)
-                            <br>
-                            Karma isn't taken into account at all.
-                        </p>
-                        <p>
-                            Meritocratic scores are computed as:
-                            <br>
-                                \(normal\_score - democratic\_score\)
-                            <br>
-                            So only the points which are due to high karma are counted.
-                        </p>
-                        <p>
-                            To make the contrast between those two scorings starker, all the posts are split into two equal groups based on the ratio of \(meritocratic\_score/democratic\_score\).
-                            So when you choose for example the meritocratic ranking, you will only see the posts from the "meritocratic group". Unless there's too few of them - then, the other group will be used too.
 
+                        Democratic and meritocratic scores are computed as:
+                            <br>
+                            <pre>
+<code>for post in all_posts:
+    post.smallBalance = post.smallUpvotes - post.smallDownvotes
+    post.bigBalance = post.bigUpvotes - post.bigDownvotes
+avg_big_vote_component = np.mean([p.baseScore - p.smallBalance for p in all_posts])
+avg_big_balance = np.mean([p.bigBalance for p in all_posts])
+avg_vote_power = avg_big_vote_component / avg_big_balance
+
+for post in all_posts:
+    post.democraticScore = int(post.smallBalance + avg_vote_power * post.bigBalance)
+    post.meritocraticScore = int(2 * post.baseScore - post.democraticScore)</code>
+                            </pre>
+
+                        <p>
+                            So democratic scoring assumes that each user has the same voting power. 
+                            The average voting power for EA happens to be around 4.
+                            And meritocratic scoring is defined as an "inverse" of democratic.
                         </p>
+                        <p>
+                            It turns out that the difference between them isn't that big - they have 93% correlation.
+                            Which I think is good, because it means there is not much tension between what newcomers and forum veterans value.
+                        </p>
+                        <img src="meri_demo_plot.png" alt="meritocratic and democratic scores plot" />
+                        <p>
+                            Still, it seems that in topics that I know well, meritocratic scoring tends to give me more interesting content.
+                            Let me know if you notice anything else.
+                        </p>
+
 
                         <h1>Other</h1>
                         <p>

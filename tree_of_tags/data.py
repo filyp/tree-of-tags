@@ -38,7 +38,6 @@ class Data:
         use_cached_forum_data=True,
         alpha=2,
         forum="ea",
-        cracy_margin=0,
         comments_time_decay_factor=1.15,
     ):
         self.alpha = alpha
@@ -77,58 +76,51 @@ class Data:
         for id_, tag in self.tags.items():
             self.tags[id_] = dotdict(tag)
 
+        all_posts = self.posts.values()
         # * calculate cracy scores
-        for post in self.posts.values():
+        for post in all_posts:
             counts = Counter(vote["voteType"] for vote in post.allVotes)
             post.bigUpvotes = counts["bigUpvote"]
             post.smallUpvotes = counts["smallUpvote"]
             post.smallDownvotes = counts["smallDownvote"]
             post.bigDownvotes = counts["bigDownvote"]
-            post.democraticScore = (
-                post.bigUpvotes + post.smallUpvotes - post.smallDownvotes - post.bigDownvotes
-            )
-            post.meritocraticScore = post.baseScore - post.democraticScore
-        # filter out posts where one of the scores is negative
-        filtered_posts = [
-            post
-            for post in self.posts.values()
-            if post.democraticScore > 0 and post.meritocraticScore > 0
-        ]
-        # find the median ratio
-        median_ratio = np.median([p.meritocraticScore / p.democraticScore for p in filtered_posts])
-        logger.info(f"Median ratio of meritocratic to democratic score: {median_ratio:.2f}")
-        for post in filtered_posts:
-            post.cracy = post.meritocraticScore / post.democraticScore / median_ratio
-        # note that filtered out posts don't have a cracy score
+            post.smallBalance = post.smallUpvotes - post.smallDownvotes
+            post.bigBalance = post.bigUpvotes - post.bigDownvotes
+        avg_big_vote_component = np.mean([p.baseScore - p.smallBalance for p in all_posts])
+        avg_big_balance = np.mean([p.bigBalance for p in all_posts])
+        avg_vote_power = avg_big_vote_component / avg_big_balance
+        for post in all_posts:
+            post.democraticScore = int(post.smallBalance + avg_vote_power * post.bigBalance)
+            post.meritocraticScore = int(2 * post.baseScore - post.democraticScore)
+        # # normalize scores
+        # avg_score = np.mean([post.baseScore for post in all_posts])
+        # avg_democratic_score = np.mean([post.democraticScore for post in all_posts])
+        # avg_meritocratic_score = np.mean([post.meritocraticScore for post in all_posts])
+        # for post in all_posts:
+        #     post.democraticScore = int(post.democraticScore / avg_democratic_score * avg_score)
+        #     post.meritocraticScore = int(post.meritocraticScore / avg_meritocratic_score * avg_score)
+
 
         # * calculate all the possible scores that the engine may ask for
         _minus_inf = float("-inf")
-        for p in self.posts.values():
+        for p in all_posts:
             p.hr = p.score
             p.tr = p.baseScore
-            if "cracy" not in p:
-                p.tm = p.hm = p.td = p.hd = _minus_inf
-            elif 1 + cracy_margin < p.cracy:
-                # meritocratic post
-                p.tm = p.meritocraticScore
-                p.hm = score_calculation(p, p.meritocraticScore)
-                p.td = p.hd = _minus_inf
-            elif p.cracy <= 1 - cracy_margin:
-                # democratic post
-                p.td = p.democraticScore
-                p.hd = score_calculation(p, p.democraticScore)
-                p.tm = p.hm = _minus_inf
-            else:
-                p.tm = p.hm = p.td = p.hd = _minus_inf
+            # meritocratic post
+            p.tm = p.meritocraticScore
+            p.hm = score_calculation(p, p.meritocraticScore)
+            # democratic post
+            p.td = p.democraticScore
+            p.hd = score_calculation(p, p.democraticScore)
             # calculate aliveness of that post
             comments = self.comments.get(p._id, [])
-            # newest_n_comments = sorted(comments, key=lambda c: c["age_in_seconds"])[:10]
             aliveness = sum(score_calculation(c, 1, comments_time_decay_factor) for c in comments)
             p.ad = p.ar = p.am = aliveness
 
-        if None in (p.score for p in self.posts.values()):
+
+        if None in (p.score for p in all_posts):
             logger.warn("Some posts have no score, so all scores will be recomputed")
-            for p in self.posts.values():
+            for p in all_posts:
                 # note we don't change p.score
                 p.hr = score_calculation(p, p.baseScore)
 

@@ -21,8 +21,7 @@
     .item6 { grid-area: posts2; }
     .leftUI {
         display: flex;
-        /* column-gap: 30px; */
-        column-gap: max(30px, calc(40% - 125px));
+        column-gap: 30px;
     }
     .rightUI {
         display: flex;
@@ -196,7 +195,9 @@
 
     <div class="leftUI">
         <div class="control-board" style="flex-direction: row;">
-            <a href="__BUTTON_BACK_URL__" class="button" style="width: 125px">Go Back</a>
+            <div class="control-selector" style="width: 125px;">
+                <a href="__BUTTON_BACK_URL__" class="button">Go Back</a>
+            </div>
         </div>
         <a href="__BUTTON1_URL__" class="button" style="width: 60%">__BUTTON1_TEXT__</a>
     </div>

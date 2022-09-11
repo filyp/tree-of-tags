@@ -65,10 +65,12 @@ class HTMLBuilder:
         with open(tag_template_filename, "r") as f:
             self.tag_template = f.read()
 
-    def build_tag_html(self, tag_url, tag_name):
+    def build_tag_html(self, tag_url, tag_name, white=False):
         tag_html = self.tag_template
         tag_html = tag_html.replace("__TAG_URL__", tag_url)
         tag_html = tag_html.replace("__TAG_NAME__", tag_name)
+        if white:
+            tag_html = tag_html.replace('class="FilterMode-tag"', 'class="FooterTag-root FooterTag-core"')
         return tag_html
 
     def build_post_html(self, post, forum, cracy):
@@ -106,14 +108,16 @@ class HTMLBuilder:
 
         return post_html
 
-    def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right):
+    def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right, num_of_left, num_of_right):
         tree_version = filename[0]
         ranking_method = filename[1]
         cracy = filename[2]
         branch_id = filename[3:]
 
         # build content
-        tags_left_html = ""
+        
+        # build the left tags
+        tags_left_html = self.build_tag_html("", f"{num_of_left} posts", white=True)
         num_of_left_tags = 0
         for tag, side_score in tags_left:
             if side_score > 0:
@@ -123,7 +127,8 @@ class HTMLBuilder:
             tags_left_html += self.build_tag_html(tag_url, tag["name"])
             num_of_left_tags += 1
 
-        tags_right_html = ""
+        # build the right tags
+        tags_right_html = self.build_tag_html("", f"{num_of_right} posts", white=True)
         num_of_right_tags = 0
         for tag, side_score in tags_right:
             if side_score <= 0:
