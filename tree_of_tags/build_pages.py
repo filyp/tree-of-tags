@@ -65,3 +65,14 @@ for forum, alphas in [
         print(f"{forum}: {tree_version}: Page building time: {time.time() - start_time:.3f}s")
 
         print()
+
+for forum, alpha in [
+    ("ea", 9),
+    ("lw", 18),
+    ("af", 1.6),
+]:
+    start_time = time.time()
+    data = Data(alpha=alpha, use_cached_forum_data=True, forum=forum)
+    builder.build_similar_tags(data)
+    builder.build_most_popular_tags(data)
+    print(f"{forum}: Similar tags building time: {time.time() - start_time:.3f}s")

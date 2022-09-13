@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tree of Tags</title>
+  <link data-react-helmet="true" rel="shortcut icon"
+    href="https://filyp.github.io/tree-of-tags/logo_small.png">
+  <link data-react-helmet="true" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500,600,700&amp;subset=all">
+  <link data-react-helmet="true" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,500,600,700">
+
+
+  <style>
+    html { overflow-y: scroll; } 
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #eeeeee;
+        padding: 20px;
+        cursor: pointer;
+        text-align: center;
+        font-family: Merriweather, Baskerville, Libre Baskerville, Georgia, serif;
+        font-size: 1.3rem;
+        color: rgba(0, 0, 0, 0.87);
+        margin-bottom: 30px;
+    }
+
+    .typography {
+        margin: 0;
+        display: block;
+
+        color: rgba(0,0,0,0.87);
+        font-size: 1.1rem;
+        font-weight: 400;
+        font-family: GreekFallback,Merriweather Sans,Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
+        line-height: 1.5em;
+
+        color: #757575;
+        font-size: 1.1rem;
+        flex-grow: 0;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+  </style>
+
+
+  <style data-jss="" data-meta="MuiSvgIcon">
+    .MuiSvgIcon-root {
+      fill: currentColor;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      font-size: 24px;
+      transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .MuiSvgIcon-colorPrimary {
+      color: __MAIN_COLOR__;
+    }
+
+    .MuiSvgIcon-colorSecondary {
+      color: __MAIN_COLOR__;
+    }
+
+    .MuiSvgIcon-colorAction {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .MuiSvgIcon-colorError {
+      color: #bf360c;
+    }
+
+    .MuiSvgIcon-colorDisabled {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    .MuiSvgIcon-fontSizeInherit {
+      font-size: inherit;
+    }
+
+    .MuiSvgIcon-fontSizeSmall {
+      font-size: 20px;
+    }
+
+    .MuiSvgIcon-fontSizeLarge {
+      font-size: 36px;
+    }
+
+    .title {
+        text-align: center;
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 3rem;
+        margin-top: 0;
+        font-weight: 400;
+        font-family: GreekFallback, Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+        line-height: 1.25;
+        margin-left: 0;
+        margin-bottom: 40px;
+        letter-spacing: -.02em;
+    }
+    .Layout-main-custom {
+    grid-area: main;
+    background: #f6f8f9;
+    min-height: calc(100vh - 90px);
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    @media (max-width:959.95px) {
+    .Layout-main-custom {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    }
+
+    .column {
+      float: left;
+      width: 50%;
+      padding-bottom: 80px;
+    }
+    .tagbox {
+      height: 34px;
+    }
+  </style>
+
+  <link rel="stylesheet" onerror="window.missingMainStylesheet=true"
+    href="style/allStyles.css">
+
+
+  <script defer src="https://app.tinyanalytics.io/pixel/ESlPU2JQQNtdcLik"></script>
+  <script data-goatcounter="https://filyp.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+
+
+<body>
+    <div class="Layout-main-custom">
+        <h1 class="title">__TITLE__</h1>
+        <div class="column">
+          <div style="float: right;">
+            __LINKS__
+          </div>
+        </div>
+
+        <div class="column">
+            __TAGS__
+        </div>
+
+      <!-- <div style="padding-bottom: 800px">
+      </div> -->
+    </div>
+
+</body>
+
+</html>

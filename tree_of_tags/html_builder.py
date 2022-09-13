@@ -65,12 +65,19 @@ class HTMLBuilder:
         with open(tag_template_filename, "r") as f:
             self.tag_template = f.read()
 
+        # load similar tags html template
+        similar_tags_template_filename = template_folder / "similar_tags_template.html"
+        with open(similar_tags_template_filename, "r") as f:
+            self.similar_tags_template = f.read()
+
     def build_tag_html(self, tag_url, tag_name, white=False):
         tag_html = self.tag_template
         tag_html = tag_html.replace("__TAG_URL__", tag_url)
         tag_html = tag_html.replace("__TAG_NAME__", tag_name)
         if white:
-            tag_html = tag_html.replace('class="FilterMode-tag"', 'class="FooterTag-root FooterTag-core"')
+            tag_html = tag_html.replace(
+                'class="FilterMode-tag"', 'class="FooterTag-root FooterTag-core"'
+            )
         return tag_html
 
     def build_post_html(self, post, forum, cracy):
@@ -108,14 +115,24 @@ class HTMLBuilder:
 
         return post_html
 
-    def build_page(self, filename, forum, tags_left, tags_right, posts_left, posts_right, num_of_left, num_of_right):
+    def build_page(
+        self,
+        filename,
+        forum,
+        tags_left,
+        tags_right,
+        posts_left,
+        posts_right,
+        num_of_left,
+        num_of_right,
+    ):
         tree_version = filename[0]
         ranking_method = filename[1]
         cracy = filename[2]
         branch_id = filename[3:]
 
         # build content
-        
+
         # build the left tags
         tags_left_html = self.build_tag_html("", f"{num_of_left} posts", white=True)
         num_of_left_tags = 0
@@ -199,5 +216,68 @@ class HTMLBuilder:
         # save html file
         pages_folder = Path(__file__).parent.parent / "_site"
         page_name = pages_folder / forum / filename
+        with open(page_name, "w") as f:
+            f.write(page_html)
+
+    def build_similar_tags(self, data, num_of_tags=30):
+        forum = data.forum
+        for tag in data.Tag_cooccurence.nodes:
+            # find the most similar tags
+            neighbors = list(data.Tag_cooccurence.neighbors(tag))
+            similar_tags = sorted(
+                neighbors, key=lambda x: data.Tag_cooccurence[tag][x]["weight"], reverse=True
+            )
+
+            links_html = ""
+            tags_html = ""
+            for tag_id in similar_tags[1 : num_of_tags + 1]:
+                tag2 = data.tags[tag_id]
+                tag_url = f"{forum_tag_urls[forum]}/{tag2['slug']}"
+                tag_html = self.build_tag_html(tag_url, tag2["name"])
+
+                link_html = self.build_tag_html(tag2["slug"] + ".html", "Show similar", white=True)
+                links_html += f"<div class='tagbox'>{link_html}</div>"
+                tags_html += f"<div class='tagbox'>{tag_html}</div>"
+
+            page_html = self.similar_tags_template
+            page_html = page_html.replace("__LINKS__", links_html)
+            page_html = page_html.replace("__TAGS__", tags_html)
+            title = f'Tags similar to: {data.tags[tag]["name"]}'
+            page_html = page_html.replace("__TITLE__", title)
+
+            # save html file
+            pages_folder = Path(__file__).parent.parent / "_site"
+            filename = data.tags[tag]["slug"] + ".html"
+            page_name = pages_folder / forum / filename
+            with open(page_name, "w") as f:
+                f.write(page_html)
+
+    def build_most_popular_tags(self, data, num_of_tags=30):
+        forum = data.forum
+        # get most popular tags
+        tag_ids = [tag for tag in data.Tag_cooccurence.nodes]
+        most_popular_tags = sorted(
+            tag_ids, key=lambda tag: data.Tag_cooccurence[tag][tag]["weight"], reverse=True
+        )
+
+        links_html = ""
+        tags_html = ""
+        for tag_id in most_popular_tags[:num_of_tags]:
+            tag = data.tags[tag_id]
+            tag_url = f"{forum_tag_urls[forum]}/{tag['slug']}"
+            tag_html = self.build_tag_html(tag_url, tag["name"])
+
+            link_html = self.build_tag_html(tag["slug"] + ".html", "Show similar", white=True)
+            links_html += f"<div class='tagbox'>{link_html}</div>"
+            tags_html += f"<div class='tagbox'>{tag_html}</div>"
+
+        page_html = self.similar_tags_template
+        page_html = page_html.replace("__TAGS__", tags_html)
+        page_html = page_html.replace("__LINKS__", links_html)
+        page_html = page_html.replace("__TITLE__", "Most popular tags")
+
+        # save html file
+        pages_folder = Path(__file__).parent.parent / "_site"
+        page_name = pages_folder / forum / "most_popular_tags.html"
         with open(page_name, "w") as f:
             f.write(page_html)

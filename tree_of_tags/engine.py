@@ -144,9 +144,9 @@ class Engine:
 
     def _set_state(self, state):
         self.current_post_ids, self.tags_spectrum, self.left_posts, self.right_posts = state
-    
+
     def get_number_of_left_posts(self):
-        return np.count_nonzero(self.left_posts)    
+        return np.count_nonzero(self.left_posts)
 
     def get_number_of_right_posts(self):
-        return np.count_nonzero(self.right_posts)    
+        return np.count_nonzero(self.right_posts)

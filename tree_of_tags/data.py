@@ -41,6 +41,7 @@ class Data:
         comments_time_decay_factor=1.15,
     ):
         self.alpha = alpha
+        self.forum = forum
 
         # * load data
         filename = f"{forum}_posts_and_tags"
@@ -100,7 +101,6 @@ class Data:
         #     post.democraticScore = int(post.democraticScore / avg_democratic_score * avg_score)
         #     post.meritocraticScore = int(post.meritocraticScore / avg_meritocratic_score * avg_score)
 
-
         # * calculate all the possible scores that the engine may ask for
         _minus_inf = float("-inf")
         for p in all_posts:
@@ -116,7 +116,6 @@ class Data:
             comments = self.comments.get(p._id, [])
             aliveness = sum(score_calculation(c, 1, comments_time_decay_factor) for c in comments)
             p.ad = p.ar = p.am = aliveness
-
 
         if None in (p.score for p in all_posts):
             logger.warn("Some posts have no score, so all scores will be recomputed")
