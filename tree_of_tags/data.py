@@ -123,6 +123,20 @@ class Data:
                 # note we don't change p.score
                 p.hr = score_calculation(p, p.baseScore)
 
+        # * cached tree can have same tags which are already deleted on the forum
+        # * so we need to add their stubs
+        deleted_tags = 0
+        for cached_tag in self.tree.pre_order():
+            if cached_tag not in self.tags:
+                deleted_tags += 1
+                self.tags[cached_tag] = dotdict(
+                    _id=cached_tag,
+                    name="_deleted_",
+                    slug="",
+                )
+        if deleted_tags:
+            logger.warn(f"Added stubs of {deleted_tags} deleted tags")
+
     def create_cooccurence_graph(self):
         Tag_cooccurence = nx.Graph()
 

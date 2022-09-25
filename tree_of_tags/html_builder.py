@@ -112,6 +112,7 @@ class HTMLBuilder:
         post_html = post_html.replace(
             "__HEIGHT_INVERSE__", str(100 - reading_time_indicator_height)
         )
+        post_html = post_html.replace("__FORUM__", forum)
 
         return post_html
 
@@ -137,8 +138,8 @@ class HTMLBuilder:
         tags_left_html = self.build_tag_html("", f"{num_of_left} posts", white=True)
         num_of_left_tags = 0
         for tag, side_score in tags_left:
-            if side_score > 0:
-                # skip tags which belong to the right side
+            if side_score > 0 or tag["name"] == "_deleted_":
+                # skip tags which belong to the right side or were deleted
                 continue
             tag_url = f"{forum_tag_urls[forum]}/{tag['slug']}"
             tags_left_html += self.build_tag_html(tag_url, tag["name"])
@@ -148,8 +149,8 @@ class HTMLBuilder:
         tags_right_html = self.build_tag_html("", f"{num_of_right} posts", white=True)
         num_of_right_tags = 0
         for tag, side_score in tags_right:
-            if side_score <= 0:
-                # skip tags which belong to the left side
+            if side_score <= 0 or tag["name"] == "_deleted_":
+                # skip tags which belong to the left side or were deleted
                 continue
             tag_url = f"{forum_tag_urls[forum]}/{tag['slug']}"
             tags_right_html += self.build_tag_html(tag_url, tag["name"])

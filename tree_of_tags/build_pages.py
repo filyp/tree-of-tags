@@ -4,7 +4,10 @@ from html_builder import HTMLBuilder
 
 import time
 import sys
+import logging
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 builder = HTMLBuilder()
 depth = int(sys.argv[1]) if len(sys.argv) > 1 else 50
@@ -53,18 +56,18 @@ for forum, alphas in [
     for alpha, tree_version in zip(alphas, ("a", "b", "c")):
         start_time = time.time()
         data = Data(alpha=alpha, use_cached_forum_data=True, forum=forum)
-        print(f"{forum}: {tree_version}: Fetching time: {time.time() - start_time:.3f}s")
+        logger.info(f"{forum}: {tree_version}: Fetching time: {time.time() - start_time:.3f}s")
 
         start_time = time.time()
         climber = TreeClimber(data)
         engine = Engine(data, climber)
-        print(f"{forum}: {tree_version}: Tree building time: {time.time() - start_time:.3f}s")
+        logger.info(f"{forum}: {tree_version}: Tree building time: {time.time() - start_time:.3f}s")
 
         start_time = time.time()
         generate_branches(forum, engine, tree_version, "", depth=depth)
-        print(f"{forum}: {tree_version}: Page building time: {time.time() - start_time:.3f}s")
+        logger.info(f"{forum}: {tree_version}: Page building time: {time.time() - start_time:.3f}s")
 
-        print()
+        logger.info("")
 
 for forum, alpha in [
     ("ea", 9),
@@ -75,4 +78,4 @@ for forum, alpha in [
     data = Data(alpha=alpha, use_cached_forum_data=True, forum=forum)
     builder.build_similar_tags(data)
     builder.build_most_popular_tags(data)
-    print(f"{forum}: Similar tags building time: {time.time() - start_time:.3f}s")
+    logger.info(f"{forum}: Similar tags building time: {time.time() - start_time:.3f}s")
