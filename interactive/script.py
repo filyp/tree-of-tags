@@ -42,12 +42,10 @@ def draw(time_millis=None):
 
     # print edges
     # for n1, n2, edge_data in To_draw.edges(data=True):
-    for n1, nei in zip(adj["nodes"], adj["adjacency"]):
-        n1 = n1["id"]
-        for edge in nei:
-            n2 = edge["id"]
+    for n1, nei in adj["adjacency"].items():
+        for n2, edge_data in nei.items():
             canvas.strokeStyle = "blue"
-            canvas.lineWidth = edge["weight"] / max_edge_weight * 10
+            canvas.lineWidth = edge_data["weight"] / max_edge_weight * 10
             canvas.beginPath()
             canvas.moveTo(*cnv_coords(*pos[n1]))
             canvas.lineTo(*cnv_coords(*pos[n2]))
@@ -117,16 +115,25 @@ async def main():
     frame_changed = True
 
     # download piclke with data
-    url = "http://localhost:3000/graph_info.pickle"
+    # url = "http://localhost:3000/graph_info.pickle"
+    url = "http://localhost:3000/interactive/tag_net.json"
     # no cache
     # header = {"Cache-Control": "no-cache"}
     # response = await http.pyfetch(url=url, method="GET", headers=header)
     response = await http.pyfetch(url=url, method="GET")
     content = await response.bytes()
-    adj, node_weights, node_names, pos = pickle.loads(content)
+    import json
+    # adj, node_weights, node_names, pos = json.loads(content)
+    nodes, edges = json.loads(content)
+
+    adj = {"nodes": nodes, "adjacency": edges}
+    node_weights = {node_id: node["weight"] for node_id, node in nodes.items()}
+    node_names = {node_id: node["name"] for node_id, node in nodes.items()}
+    pos = {node_id: node["pos"] for node_id, node in nodes.items()}
+
     net_data = NetworkData(adj, node_weights, node_names, pos)
     net_data.max_node_weight = max(node_weights.values())
-    net_data.max_edge_weight = max([edge["weight"] for nei in adj["adjacency"] for edge in nei])
+    net_data.max_edge_weight = max([edge["weight"] for nei in adj["adjacency"].values() for edge in nei.values()])
 
     canvas_element.addEventListener("wheel", create_proxy(on_wheel))
     canvas_element.addEventListener("mousedown", create_proxy(on_mouse_down))

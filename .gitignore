@@ -133,4 +133,3 @@ data
 _site
 *.ipynb
 interactive/tag_net.json
-graph_info.pickle
