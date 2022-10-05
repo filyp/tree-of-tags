@@ -1,22 +1,12 @@
-let num_of_nodes = 30;
-let num_of_fading_nodes = 20;
-let min_num_of_opaque_nodes = 10;
-
 // spring layout
 let attr = "overlap";
 let repulsive_force = 0.0001;
 let attractive_force = 0.1;
 let repulsion_exponent = 2;
 
-
-let off_screen_decay_factor = 10;
-let zoom = 1 / 2;
-let _zoom_speed = 0.001;
-
-let position_on_plane = [0, 0];
 let nodes, edges, nodes_sorted, largest_node_weight, _tag_net;
 let clickedX, clickedY;
-let diagonal;
+let pos;
 
 function preload() {
   _tag_net = loadJSON("tag_net.json");
@@ -25,12 +15,16 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textAlign(CENTER, CENTER);
-  diagonal = Math.sqrt(width ** 2 + height ** 2);
+  pos = new Positioning(width, height);
+
   [nodes, edges] = [_tag_net[0], _tag_net[1]];
   largest_node_weight = Math.max(...Object.values(nodes).map((node) => node.weight));
 
   // create a sorted list of node ids
   nodes_sorted = Object.keys(nodes).sort((a, b) => nodes[b].weight - nodes[a].weight);
+
+  // limit nodes_sorted to the top 100 nodes
+  nodes_sorted = nodes_sorted.slice(0, 100);
 
   initialize_positions();
 }
@@ -42,10 +36,7 @@ function draw() {
 }
 
 function mouseWheel(event) {
-  let old_zoom = zoom;
-  zoom /= 2 ** (event.delta * _zoom_speed);
-  position_on_plane[0] += ((mouseX - width / 2) * (1 / old_zoom - 1 / zoom)) / height;
-  position_on_plane[1] += ((mouseY - height / 2) * (1 / old_zoom - 1 / zoom)) / height;
+  pos.zoom(event.delta, mouseX, mouseY);
   loop();
 }
 
@@ -55,102 +46,10 @@ function mousePressed() {
 }
 
 function mouseDragged() {
-  position_on_plane[0] -= (mouseX - clickedX) / zoom / height;
-  position_on_plane[1] -= (mouseY - clickedY) / zoom / height;
+  pos.drag(mouseX - clickedX, mouseY - clickedY);
   clickedX = mouseX;
   clickedY = mouseY;
   loop();
-}
-
-function plane_to_pix(pos) {
-  // convert a plane coordinate to a pixel coordinate
-  // plane coordinates are in the range [-1, 1]
-  return [
-    (pos[0] - position_on_plane[0]) * zoom * height + width / 2,
-    (pos[1] - position_on_plane[1]) * zoom * height + height / 2,
-  ];
-}
-
-function pix_to_plane(pix_pos) {
-  // convert a pixel coordinate to a plane coordinate
-  return [
-    (pix_pos[0] - width / 2) / zoom / height + position_on_plane[0],
-    (pix_pos[1] - height / 2) / zoom / height + position_on_plane[1],
-  ];
-}
-
-function draw_graph() {
-  // choose nodes to draw
-  // while there are less than num_of_nodes nodes to draw, try to add the next node
-  let nodes_to_draw = [];
-  let i = 0;
-  while (nodes_to_draw.length < num_of_nodes) {
-    let node_id = nodes_sorted[i];
-    let node = nodes[node_id];
-    let visibility = is_in_view(node.pos);
-    let priority = node.weight * visibility;
-    // node_id, priority, visibility
-    if (visibility > 0) nodes_to_draw.push([node_id, priority, 255]);
-    i++;
-    // break if array ended
-    if (i >= nodes_sorted.length) break;
-  }
-
-  update_positions(nodes_to_draw.map((node) => node[0]));
-
-  // // sort nodes by priority
-  // nodes_to_draw.sort((a, b) => b[1] - a[1]);
-  // // last nodes should gradually fade out
-  // let current_num_of_fading_nodes = Math.min(
-  //   num_of_fading_nodes,
-  //   nodes_to_draw.length - min_num_of_opaque_nodes
-  // );
-  // if (current_num_of_fading_nodes > 0) {
-  //   for (let i = 0; i < current_num_of_fading_nodes; i++) {
-  //     nodes_to_draw[nodes_to_draw.length - i - 1][2] =
-  //       (255 * i) / current_num_of_fading_nodes;
-  //   }
-  // }
-
-  // draw edges
-  for (const [n1, priority1, n1_alpha] of nodes_to_draw) {
-    let [x1, y1] = plane_to_pix(nodes[n1].pos);
-    for (const [n2, priority2, n2_alpha] of nodes_to_draw) {
-      let edge_data = edges[n1][n2];
-      // if there is no edge, continue
-      if (edge_data == undefined) continue;
-
-      let [x2, y2] = plane_to_pix(nodes[n2].pos);
-      strokeWeight(get_edge_width(edge_data.overlap));
-      // strokeWeight(edge_data.weight / 300);
-
-      // let n2_alpha = 255 // node_visibility(nodes[n2]);
-      let line_alpha = Math.min(n1_alpha, n2_alpha);
-      stroke(12, 134, 155, line_alpha); // #0c869b
-      line(x1, y1, x2, y2);
-    }
-  }
-
-  // draw nodes
-  noStroke();
-  for (const [n1, priority1, n1_alpha] of nodes_to_draw) {
-    let node = nodes[n1];
-    let [x, y] = plane_to_pix(node.pos);
-    textSize(node_size(node.weight));
-    // text_alpha = 255 // node_visibility(node);
-    fill(255, n1_alpha);
-    text(node.name, x, y);
-  }
-}
-
-function is_in_view(pos) {
-  let [x, y] = plane_to_pix(pos);
-  let dist_to_center = Math.sqrt((x - width / 2) ** 2 + (y - height / 2) ** 2);
-  // sharply decay visibility when distance to center is > diagonal / 2
-  let decay = (off_screen_decay_factor * (dist_to_center - diagonal / 2)) / diagonal;
-  // clip to [0, 1]
-  decay = Math.max(0, Math.min(1, decay));
-  return 1 - decay;
 }
 
 // function node_visibility(node) {
@@ -171,7 +70,7 @@ function node_size(weight) {
 }
 
 function get_edge_width(overlap) {
-  return 20 * Math.max(0, overlap - 0.03);
+  return 20 * Math.max(0, overlap - 0.02);
   // return 20 * overlap ** 2;
 }
 
@@ -180,6 +79,54 @@ function initialize_positions() {
     node.pos = [Math.random() * 2 - 1, Math.random() * 2 - 1];
   }
 }
+
+
+function draw_graph() {
+  // choose nodes to draw
+  let nodes_to_draw = [];
+  for (const node_id of nodes_sorted) {
+    let node = nodes[node_id];
+    let visibility = 255 * pos.is_in_view(node.pos);
+    if (visibility > 0) nodes_to_draw.push([node_id, visibility]);
+  }
+
+  update_positions(nodes_to_draw.map((node) => node[0]));
+
+
+  // draw edges
+  for (const [n1, n1_alpha] of nodes_to_draw) {
+    let [x1, y1] = pos.plane_to_pix(nodes[n1].pos);
+    for (const [n2, n2_alpha] of nodes_to_draw) {
+      let edge_data = edges[n1][n2];
+      // if there is no edge, continue
+      if (edge_data == undefined) continue;
+
+      let [x2, y2] = pos.plane_to_pix(nodes[n2].pos);
+      strokeWeight(get_edge_width(edge_data.overlap));
+      // strokeWeight(edge_data.weight / 300);
+
+      // let n2_alpha = 255 // node_visibility(nodes[n2]);
+      let line_alpha = Math.min(n1_alpha, n2_alpha);
+      stroke(12, 134, 155, line_alpha); // #0c869b
+      line(x1, y1, x2, y2);
+    }
+  }
+
+  // draw nodes
+  noStroke();
+  for (const [n1, n1_alpha] of nodes_to_draw) {
+    let node = nodes[n1];
+    let [x, y] = pos.plane_to_pix(node.pos);
+    textSize(node_size(node.weight));
+    fill(255, n1_alpha);
+    text(node.name, x, y);
+  }
+}
+
+
+
+
+
 
 function update_positions(nodes_to_update) {
   // initialize forces as zeros
