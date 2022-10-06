@@ -130,6 +130,12 @@ dmypy.json
 
 # Custom
 data
-_site
+_site/lw
+_site/ea
+_site/af
 *.ipynb
 interactive/tag_net.json
+_site/af_graph_white_trimmed.png
+_site/ea_graph_white_trimmed.png
+_site/lw_graph_white_trimmed.png
+_site/interactive/tag_net.json
