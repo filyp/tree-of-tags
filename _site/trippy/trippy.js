@@ -15,7 +15,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   background(0)
   // imageMode(CENTER)
-
   ui = new UI();
 }
 
@@ -29,6 +28,10 @@ function mousePressed() {
   // record mouse position
   clickedX = mouseX
   clickedY = mouseY
+}
+
+function keyPressed() {
+  handle_key_press(key, ui)
 }
 
 function draw() {
@@ -51,20 +54,8 @@ function draw() {
   push()
   translate(width / 2, height / 2)
   if (mouseIsPressed) {
-    // draw sunflower pattern
-    background(0)
-    let mouse_dist = dist(0, 0, mx, my)
-    let mouse_angle = atan2(my, mx)
-    let old_mouse_dist = dist(0, 0, clickedX - width / 2, clickedY - height / 2)
-    let old_mouse_angle = atan2(clickedY - height / 2, clickedX - width / 2)
-    let angle = TWO_PI / ui.symmetry + (mouse_angle - old_mouse_angle) / ui.symmetry
-    let size_offset = mouse_dist / old_mouse_dist
-    for (let i = sunflower_limit - 1; i >= 0; i--) {
-      let r =  mouse_dist * (size_offset ** i)
-      let x = r * Math.cos(mouse_angle + angle * i)
-      let y = r * Math.sin(mouse_angle + angle * i)
-      styled_shape(x, y, shape_size * (size_offset ** i), color)
-    }
+    // let left_eye = createGraphics(width / 2, height)
+    draw_sunflower(mx, my, shape_size, color)
   } else {
     // draw in a caleidoscope around center
     for (let i = ui.symmetry - 1; i >= 0; i--) {
@@ -129,6 +120,23 @@ function styled_shape(x, y, shape_size, color) {
 }
 
 
+function draw_sunflower(mx, my, shape_size, color, max_binocular_offset=0) {
+  background(0)
+  const mouse_dist = dist(0, 0, mx, my)
+  const mouse_angle = atan2(my, mx)
+  const old_mouse_dist = dist(0, 0, clickedX - width / 2, clickedY - height / 2)
+  const old_mouse_angle = atan2(clickedY - height / 2, clickedX - width / 2)
+  const angle = TWO_PI / ui.symmetry + (mouse_angle - old_mouse_angle) / ui.symmetry
+  const offset_factor = mouse_dist / old_mouse_dist
+  for (let i = sunflower_limit - 1; i >= 0; i--) {
+    const offset = offset_factor ** i
+    const r =  mouse_dist * offset
+    const x = r * Math.cos(mouse_angle + angle * i)
+    const y = r * Math.sin(mouse_angle + angle * i)
+    styled_shape(x + offset * max_binocular_offset, y, shape_size * offset, color)
+  }
+}
+
 // transformations on existing image
 // some blur will be added with each transformation, so it's a bad approach
   // let im = get()
@@ -147,86 +155,3 @@ function styled_shape(x, y, shape_size, color) {
   // smooth()
   // // pop()
 
-
-function keyPressed() {
-  // number pressed with control and alt changes ellipse shape
-  if (key >= "1" && key <= "9" && keyIsDown(CONTROL) && keyIsDown(ALT)) {
-    ui.ellipseness = int(key) - 1
-    return
-  }
-
-  // number pressed with control  changes shape
-  if (key >= "0" && key <= "9" && keyIsDown(CONTROL)) {
-    ui.n_vertices = int(key)
-    return
-  }
-
-  // number keys choose symmetry
-  if (key >= "1" && key <= "9") {
-    ui.symmetry = int(key)
-    return
-  }
-
-  // top row sets blending mode
-  let blending_modes = {
-    "q": BLEND,
-    "w": ADD,
-    "e": DODGE,
-    "r": SOFT_LIGHT,
-    "t": LIGHTEST,
-  }
-  if (key in blending_modes) {
-    ui.blending_mode = blending_modes[key]
-    return
-  }
-
-  // middle row sets ring width
-  let ring_widths = {
-    "a": 0.0625,
-    "s": 0.25,
-    "d": 1,
-    "f": 4,
-    "g": 16,
-    "h": 64,
-    "j": 256,
-  }
-  if (key in ring_widths) {
-    ui.ring_width = ring_widths[key]
-    return
-  }
-
-  // bottom row sets border width
-  let border_widths = {
-    "z": 0.03125,
-    "x": 0.125,
-    "c": 0.5,
-    "v": 2,
-    "b": 8,
-    "n": 32,
-    "m": 128,
-  }
-  if (key in border_widths) {
-    ui.border_width = border_widths[key]
-    return
-  }
-
-  switch (key) {
-    // space pauses and unpauses
-    case " ":
-      if (isLooping()) {
-        noLoop()
-      } else {
-        loop()
-      }
-      break
-    // u toggles UI panel
-    case "u":
-      ui.visible = !ui.visible
-      if (ui.visible) {
-        ui.show_ui()
-      } else {
-        ui.hide_ui()
-      }
-      break
-  }
-}
