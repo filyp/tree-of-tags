@@ -8,7 +8,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Schedule to be run every 3 hours
+  # Schedule to be run once per day
   schedule:
     - cron: "0 0 * * *"
 
